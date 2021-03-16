@@ -1,6 +1,6 @@
 package de.laura.project.api.service;
 
-import de.laura.project.api.model.TriviaApiData;
+import de.laura.project.api.model.TriviaApiDataAggregation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
@@ -19,8 +19,8 @@ public class TriviaApiService {
         this.restTemplate = restTemplate;
     }
 
-    public TriviaApiData[] getDataPoints() {
-        ResponseEntity<TriviaApiData[]> response = restTemplate.getForEntity(url, TriviaApiData[].class);
+    public TriviaApiDataAggregation getDataPoints() {
+        ResponseEntity<TriviaApiDataAggregation> response = restTemplate.getForEntity(url, TriviaApiDataAggregation.class);
         return response.getBody();
     }
 
