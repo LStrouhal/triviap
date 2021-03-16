@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63272987-13e3-4426-89c3-db0c27fd6a45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/model/TriviaApiDataAggregation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/model/TriviaApiData.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/model/TriviaApiData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/service/TriviaApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/service/TriviaApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/controller/ApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/controller/TriviaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/model/TriviaDataPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/model/TriviaQuestionSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/model/TriviaQuestion.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/service/TriviaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/service/TriviaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/test/java/de/laura/project/api/service/TriviaApiServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/de/laura/project/api/service/TriviaApiServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,16 +65,14 @@
       <recent name="de.laura.project.api.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ProjectApplication">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TriviaApiServiceTest.getDataPointsFromApi">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -143,7 +132,8 @@
       <updated>1615542326636</updated>
       <workItem from="1615542328720" duration="2139000" />
       <workItem from="1615798190483" duration="8524000" />
-      <workItem from="1615810501129" duration="32190000" />
+      <workItem from="1615810501129" duration="34397000" />
+      <workItem from="1615906393221" duration="3316000" />
     </task>
     <servers />
   </component>
