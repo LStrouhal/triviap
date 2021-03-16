@@ -2,12 +2,9 @@ package de.laura.project.service;
 
 import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.service.TriviaApiService;
-import de.laura.project.model.TriviaDataPoint;
+import de.laura.project.model.TriviaQuestionSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,13 +19,12 @@ public class TriviaService {
         this.triviaApiService = triviaApiService;
     }
 
-    public List<TriviaDataPoint> getListDataPoints() {
+    public List<TriviaQuestionSet> getListDataPoints() {
 
-        TriviaApiData triviaApiDataArray[] = triviaApiService.getDataPoints();
+        List<TriviaApiData> triviaApiDataList = triviaApiService.getDataPoints().getTriviaApiData();
 
-
-        return Arrays.stream(triviaApiDataArray)
-                .map(triviaApiData -> TriviaDataPoint.builder()
+        return triviaApiDataList.stream()
+                        .map(triviaApiData -> TriviaQuestionSet.builder()
                         .category(triviaApiData.getCategory())
                         .type(triviaApiData.getType())
                         .difficulty(triviaApiData.getDifficulty())

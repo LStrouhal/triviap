@@ -5,16 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63272987-13e3-4426-89c3-db0c27fd6a45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/model/TriviaApiData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/service/TriviaApiService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/config/RestTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/controller/ApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/model/TriviaDataPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/model/TriviaQuestion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/service/TriviaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/de/laura/project/api/service/TriviaApiServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/model/TriviaApiDataAggregation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/model/TriviaApiData.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/model/TriviaApiData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/service/TriviaApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/service/TriviaApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/controller/ApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/controller/TriviaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/model/TriviaDataPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/model/TriviaQuestionSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/model/TriviaQuestion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/service/TriviaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/service/TriviaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/de/laura/project/api/service/TriviaApiServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/de/laura/project/api/service/TriviaApiServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,6 +67,9 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="de.laura.project.api.service" />
     </key>
@@ -79,6 +84,21 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TriviaApiServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.laura.project.api.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.laura.project.api.service" />
+      <option name="MAIN_CLASS_NAME" value="de.laura.project.api.service.TriviaApiServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -109,6 +129,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TriviaApiServiceTest.getDataPointsFromApi" />
+        <item itemvalue="JUnit.TriviaApiServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -122,7 +143,7 @@
       <updated>1615542326636</updated>
       <workItem from="1615542328720" duration="2139000" />
       <workItem from="1615798190483" duration="8524000" />
-      <workItem from="1615810501129" duration="17298000" />
+      <workItem from="1615810501129" duration="32190000" />
     </task>
     <servers />
   </component>
