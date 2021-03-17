@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 public class TriviaApiService {
 
     private final RestTemplate restTemplate;
-    private final String url = "https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple";
+    private final String baseUrl = "https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple";
 
 
     @Autowired
@@ -20,11 +20,10 @@ public class TriviaApiService {
     }
 
     public TriviaApiDataAggregation getDataPoints() {
-        ResponseEntity<TriviaApiDataAggregation> response = restTemplate.getForEntity(url, TriviaApiDataAggregation.class);
+        ResponseEntity<TriviaApiDataAggregation> response = restTemplate.getForEntity(baseUrl, TriviaApiDataAggregation.class);
         return response.getBody();
     }
-
+g
 }
-
 
 

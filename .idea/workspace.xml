@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="63272987-13e3-4426-89c3-db0c27fd6a45" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/service/TriviaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/service/TriviaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/service/TriviaApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/de/laura/project/api/service/TriviaApiService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/test/java/de/laura/project/api/service/TriviaApiServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/de/laura/project/api/service/TriviaApiServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,17 +66,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.TriviaApiServiceTest.getDataPointsFromApi">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TriviaApiServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -133,7 +122,8 @@
       <workItem from="1615542328720" duration="2139000" />
       <workItem from="1615798190483" duration="8524000" />
       <workItem from="1615810501129" duration="34397000" />
-      <workItem from="1615906393221" duration="3316000" />
+      <workItem from="1615906393221" duration="6218000" />
+      <workItem from="1615968642120" duration="341000" />
     </task>
     <servers />
   </component>

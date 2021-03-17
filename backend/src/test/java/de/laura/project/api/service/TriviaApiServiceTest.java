@@ -2,8 +2,6 @@ package de.laura.project.api.service;
 
 import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.model.TriviaApiDataAggregation;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +27,7 @@ class TriviaApiServiceTest {
 
         RestTemplate restTemplate = mock(RestTemplate.class);
 
-        List<String> incorrectAnswers = List.of("incorrectAnswer", "wrongAnswer");
+        List<String> incorrectAnswers = List.of("incorrectAnswer", "wrongAnswer", "terribleAnswer");
 
         TriviaApiData triviaApiData = new TriviaApiData("13", "multiple-choice", "easy", "this is a question", "correctAnswer", incorrectAnswers);
 
