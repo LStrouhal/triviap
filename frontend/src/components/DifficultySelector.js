@@ -1,6 +1,6 @@
 import {Select, MenuItem, FormControl} from "@material-ui/core"
 import {useState} from "react";
-import useStyles from "./DropdownStlye";
+import useStyles from "./DropdownStyle";
 import styled from "styled-components/macro"
 
 export default function DifficultySelector() {
@@ -12,7 +12,7 @@ export default function DifficultySelector() {
     return (
         <Wrapper>
             <FormControl className={style.formControl}>
-                <Select onChange={handleChange}>
+                <Select className={style.Select} disableUnderline={true} onChange={handleChange}>
                     <MenuItem value={"Easy"}>Easy</MenuItem>
                     <MenuItem value={"Medium"}>Medium</MenuItem>
                     <MenuItem value={"Difficult"}>Difficult</MenuItem>

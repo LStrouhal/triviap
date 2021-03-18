@@ -1,6 +1,6 @@
 import {Select, MenuItem, FormControl} from "@material-ui/core"
 import {useState} from "react";
-import useStyles from "./DropdownStlye";
+import useStyles from "./DropdownStyle";
 
 export default function CategorySelector() {
 
@@ -12,7 +12,7 @@ export default function CategorySelector() {
     return (
         <section>
             <FormControl className={style.formControl}>
-                <Select onChange={handleChange}>
+                <Select className={style.Select} disableUnderline={true} onChange={handleChange}>
                     <MenuItem value={1}> General Knowledge</MenuItem>
                     <MenuItem value={2}>Entertainment: Books</MenuItem>
                     <MenuItem value={3}>Entertainment: Film</MenuItem>

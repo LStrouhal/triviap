@@ -4,6 +4,7 @@ export default createGlobalStyle`
   :root {
     --greenStandard: #015252;
     --beigeStandard: #f7f7f2;
+    font-family: "Helvetica Neue";
   }  
   
   * {

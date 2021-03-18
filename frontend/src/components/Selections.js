@@ -7,15 +7,15 @@ export default function Selections() {
     return (
         <Wrapper>
             <section>
-                <header> Please select number of questions</header>
+                <header> Please select number of questions: </header>
                 <NumberSelector/>
             </section>
             <section>
-                <header> Please select category</header>
+                <header> Please select category: </header>
                 <CategorySelector/>
             </section>
             <section>
-                <header> Please select level of difficulty</header>
+                <header> Please select level: </header>
                 <DifficultySelector/>
             </section>
         </Wrapper>
@@ -26,7 +26,7 @@ const Wrapper = styled.main`
   overflow-y: scroll;
   padding: 0 20px;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
   grid-gap: 10px;
 
   header {

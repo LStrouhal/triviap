@@ -1,6 +1,6 @@
 import {Select, MenuItem, FormControl} from "@material-ui/core"
 import {useState} from "react";
-import useStyles from "./DropdownStlye";
+import useStyles from "./DropdownStyle";
 
 export default function NumberSelector() {
     const style = useStyles();
@@ -11,14 +11,14 @@ export default function NumberSelector() {
     return (
         <section>
             <FormControl className={style.formControl}>
-                <Select onChange={handleChange}>
-                    <MenuItem value={"10"}>10</MenuItem>
-                    <MenuItem value={"15"}>15</MenuItem>
-                    <MenuItem value={"20"}>20</MenuItem>
-                    <MenuItem value={"25"}>15</MenuItem>
-                    <MenuItem value={"30"}>20</MenuItem>
-                    <MenuItem value={"35"}>15</MenuItem>
-                    <MenuItem value={"40"}>20</MenuItem>
+                <Select className={style.Select} disableUnderline={true} onChange={handleChange}>
+                    <MenuItem className = {style.MenuItem} value={"10"}>10</MenuItem>
+                    <MenuItem className = {style.MenuItem} value={"15"}>15</MenuItem>
+                    <MenuItem className = {style.MenuItem} value={"20"}>20</MenuItem>
+                    <MenuItem className = {style.MenuItem} value={"25"}>25</MenuItem>
+                    <MenuItem className = {style.MenuItem} value={"30"}>30</MenuItem>
+                    <MenuItem className = {style.MenuItem} value={"35"}>35</MenuItem>
+                    <MenuItem className = {style.MenuItem} value={"40"}>40</MenuItem>
                 </Select>
             </FormControl>
         </section>

@@ -14,4 +14,4 @@ const Header = styled.header`
   background: var(--beigeStandard);
   padding: 10px;
   
-`
+`;
