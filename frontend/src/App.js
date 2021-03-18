@@ -1,19 +1,22 @@
+import styled from "styled-components/macro"
+import SelectionsHeader from "./components/SelectionsHeader";
+import Selections from "./components/Selections";
 
-
-
-function App() {
+export default function App() {
 
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <div>
-
-                </div>
-
-            </header>
-        </div>
+        <PageLayout>
+            <SelectionsHeader/>
+            <Selections/>
+        </PageLayout>
     );
 }
 
-export default App;
+const PageLayout = styled.div`
+  background: var(--greenStandard);
+  color: var(--beigeStandard);
+  display: grid;
+  grid-template-rows: auto 1fr;
+`;
+
