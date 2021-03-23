@@ -1,19 +1,16 @@
+import SelectionsHeader from "./components/SelectionsHeader";
+import Selections from "./components/Selections";
+import PageLayout from "./components/PageLayout";
 
-
-
-function App() {
+export default function App() {
 
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <div>
-
-                </div>
-
-            </header>
-        </div>
+        <PageLayout>
+            <SelectionsHeader/>
+            <Selections/>
+        </PageLayout>
     );
 }
 
-export default App;
+
