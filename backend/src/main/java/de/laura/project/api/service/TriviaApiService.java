@@ -22,7 +22,7 @@ public class TriviaApiService {
     }
 
     public String buildTriviaApiUrl(int amount, int category, String difficulty) {
-        return ("https://opentdb.com/api.php?amount=" + amount + "&category=" + category +"&difficulty=" + difficulty + "&type=multiple");
+        return "https://opentdb.com/api.php?amount=" + amount + "&category=" + category +"&difficulty=" + difficulty + "&type=multiple";
     }
 
     public List<TriviaApiData> callQuestionList(int amount, int category, String difficulty) {

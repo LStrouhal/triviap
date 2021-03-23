@@ -10,14 +10,12 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.mockito.Mockito.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 class TriviaServiceTest {
-
 
     private final AnswerRandomizerService answerRandomizerService = mock(AnswerRandomizerService.class);
     private final TriviaApiService triviaApiService = mock(TriviaApiService.class);
@@ -34,32 +32,22 @@ class TriviaServiceTest {
     public void addIdToQuestionSetShouldAddIDtoEachQuestionSet() {
 
         //GIVEN
-
         List<String> answers = List.of("answerOne", "answerTwo", "answerThree", "answerFour");
 
         List<TriviaQuestionSet> triviaQuestionSet = List.of(
                 new TriviaQuestionSet(0, "This is an awesome question", "CorrectAnswer", answers),
                 new TriviaQuestionSet(0, "This is another awesome question", "Looks correct", answers));
 
-
-
         TriviaService triviaService = new TriviaService(triviaApiService, tempTriviaQuestionDB, answerRandomizerService);
 
-
         // WHEN
-
         triviaService.addIDtoQuestionSet(triviaQuestionSet);
 
-
         //THEN
-
         assertThat(triviaQuestionSet, containsInAnyOrder(
                 new TriviaQuestionSet(1, "This is an awesome question", "CorrectAnswer", answers),
                 new TriviaQuestionSet(2, "This is another awesome question", "Looks correct", answers)));
-
     }
-
-
 
 
     @Test
@@ -68,7 +56,6 @@ class TriviaServiceTest {
     public void callQuestionListShouldReturnQuestionSetList() {
 
         //GIVEN
-
         List<String> answersForApiDataList = List.of("answerOne", "answerTwo", "answerThree");
 
         List<TriviaApiData> triviaApiDataList = List.of(
@@ -86,22 +73,14 @@ class TriviaServiceTest {
                 .thenReturn(triviaApiDataList);
 
 
-        when(answerRandomizerService.generateRandomNumber()).thenReturn(0);
+        when(answerRandomizerService.generateRandomNumber(4)).thenReturn(0);
 
         TriviaService triviaService = new TriviaService(triviaApiService, tempTriviaQuestionDB, answerRandomizerService);
 
-
-
         // WHEN
-
         List<TriviaQuestionSet> actual = triviaService.callQuestionList(amount, category, difficulty);
 
-
         //THEN
-
         assertThat((actual), is (expected));
-
     }
-
-
 }

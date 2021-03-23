@@ -32,7 +32,6 @@ class TriviaControllerTest {
         return "http://localhost:" + port + "/questions";
     }
 
-
     @MockBean
     private RestTemplate restTemplate;
 
@@ -42,14 +41,12 @@ class TriviaControllerTest {
     @Autowired
     private TriviaService triviaService;
 
-
     @Test
     @DisplayName("Get to /questions returns list of questions from Trivia API")
 
     public void returnQuestionSet() {
 
         //GIVEN
-
         String url = "https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple";
 
         ArrayList<String> answerForTriviaQuestionSet = new ArrayList<>();
@@ -64,7 +61,6 @@ class TriviaControllerTest {
         answerForTriviaQuestionSet.add("answerTwo");
         answerForTriviaQuestionSet.add("answerThree");
 
-
         List<String> answersForApiDataList = List.of("answerOne", "answerTwo", "answerThree");
 
         List<TriviaApiData> mockedTriviaApiDataList = List.of(
@@ -77,18 +73,11 @@ class TriviaControllerTest {
                 .thenReturn(new ResponseEntity<>(mockedTriviaDataAggregationList, HttpStatus.OK));
 
         //WHEN
-
         ResponseEntity<TriviaQuestionSet[]> response = testRestTemplate.getForEntity(getUrl(), TriviaQuestionSet[].class);
 
-
         //THEN
-
         assertThat(response.getBody(), arrayContainingInAnyOrder(
                 new TriviaQuestionSet(1, "This is an awesome question", "correct answer", answerForTriviaQuestionSet),
                 new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", anotherAnswerForTriviaQuestionSet)));
-
-
     }
-
-
 }

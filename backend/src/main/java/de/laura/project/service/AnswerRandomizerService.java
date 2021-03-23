@@ -11,11 +11,9 @@ import org.springframework.stereotype.Service;
 
 public class AnswerRandomizerService {
 
+    public int generateRandomNumber(int numberOfAnswers) {
 
-    public int generateRandomNumber() {
+        return (int) (Math.random() * numberOfAnswers);
 
-        int number = (int) (Math.random() * 4.0);
-
-        return number;
     }
 }

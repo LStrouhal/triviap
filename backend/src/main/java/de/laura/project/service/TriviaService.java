@@ -4,6 +4,7 @@ import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.service.TriviaApiService;
 import de.laura.project.db.TempTriviaQuestionDB;
 import de.laura.project.model.TriviaQuestionSet;
+import de.laura.project.model.TriviaQuestionSetWithoutAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-
 public class TriviaService {
 
     private final TriviaApiService triviaApiService;
@@ -20,17 +20,12 @@ public class TriviaService {
     private final AnswerRandomizerService answerRandomizerService;
 
 
-
-
     @Autowired
-
     public TriviaService(TriviaApiService triviaApiService, TempTriviaQuestionDB tempTriviaQuestionDB, AnswerRandomizerService answerRandomizerService) {
         this.triviaApiService = triviaApiService;
         this.tempTriviaQuestionDB = tempTriviaQuestionDB;
         this.answerRandomizerService = answerRandomizerService;
     }
-
-
 
 
     public List<TriviaQuestionSet> callQuestionList(int amount, int category, String difficulty) {
@@ -54,13 +49,15 @@ public class TriviaService {
 
     }
 
+
     private List<String> determineAnswers(TriviaApiData triviaApiData) {
 
         ArrayList<String> answers = new ArrayList<String>();
 
-        int number = answerRandomizerService.generateRandomNumber();
+        int numberOfAnswers = 4;
+        int number = answerRandomizerService.generateRandomNumber(numberOfAnswers);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < numberOfAnswers; i++) {
 
             if (i < number) {
                 answers.add(triviaApiData.getIncorrect_answers().get(i));
@@ -70,7 +67,6 @@ public class TriviaService {
                 answers.add(triviaApiData.getIncorrect_answers().get(i - 1));
             }
         }
-
         return answers;
     }
 
@@ -81,11 +77,14 @@ public class TriviaService {
 
         for (TriviaQuestionSet triviaQuestion : triviaQuestionSetList) {
             triviaQuestion.setId(n);
-            n = n + 1;
+            n++;
 
         };
     }
 
+    public TriviaQuestionSetWithoutAnswer getSingleQuestion(int id) {
+        return tempTriviaQuestionDB.getSingleQuestion(id);
+    }
 }
 
 

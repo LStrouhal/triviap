@@ -33,7 +33,6 @@ class TriviaApiServiceTest {
     public void getDataPointsFromApi() {
 
         //GIVEN
-
         List<String> incorrectAnswers = List.of("incorrectAnswer", "wrongAnswer");
 
         TriviaApiData triviaApiData = new TriviaApiData("13", "multiple-choice", "easy", "this is a question", "correctAnswer", incorrectAnswers);
@@ -43,17 +42,13 @@ class TriviaApiServiceTest {
         when(restTemplate.getForEntity(url, TriviaApiDataAggregation.class))
                 .thenReturn(new ResponseEntity<>(mockedData, HttpStatus.OK));
 
-
         //WHEN
-
         List<TriviaApiData> actualData = triviaApiService.callQuestionList(amount, category, difficulty);
 
         //THEN
-
         assertThat(actualData, containsInAnyOrder (new TriviaApiData("13", "multiple-choice", "easy", "this is a question", "correctAnswer", incorrectAnswers))
         );
     }
-
 
 
     @Test
@@ -61,18 +56,12 @@ class TriviaApiServiceTest {
 
     public void buildsUrlFromInput () {
 
-
         //WHEN
-
         String newUrl = triviaApiService.buildTriviaApiUrl(amount, category, difficulty);
-
 
         //THEN
         assertThat(newUrl, is(url));
-
-
     }
-
 }
 
 
