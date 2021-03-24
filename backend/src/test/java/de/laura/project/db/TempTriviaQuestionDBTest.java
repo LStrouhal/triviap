@@ -43,7 +43,7 @@ class TempTriviaQuestionDBTest {
 
     public void checkAnswer() {
 
-    //GIVEN
+        //GIVEN
         List<TriviaQuestionSet> triviaQuestionSetList = new ArrayList<>();
         triviaQuestionSetList.add(new TriviaQuestionSet(1, "This is an awesome question", "correct answer", List.of("correct answer", "answerOne", "answerTwo", "answerThree")));
         triviaQuestionSetList.add(new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", List.of("another correct answer", "answerOne", "answerTwo", "answerThree")));
