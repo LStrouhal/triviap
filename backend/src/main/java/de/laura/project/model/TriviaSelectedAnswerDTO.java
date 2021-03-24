@@ -5,17 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 
-public class TriviaQuestionSetDTO {
+public class TriviaSelectedAnswerDTO {
 
-    private int amount;
-    private int category;
-    private String difficulty;
+    private int questionId;
+    private String selectedAnswer;
 
 }

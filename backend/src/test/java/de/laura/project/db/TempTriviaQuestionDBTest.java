@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TempTriviaQuestionDBTest {
 
+    private final TempTriviaQuestionDB triviaQuestionDB = new TempTriviaQuestionDB();
 
     @Test
     @DisplayName("Tests whether DB returns a question set without the correct answer")
@@ -22,16 +23,13 @@ class TempTriviaQuestionDBTest {
     public void getSingleQuestion() {
 
         //GIVEN
-        List<String> answerSetForTriviaQuestionSet = List.of("correct answer", "answerOne", "answerTwo", "answerThree");
-        List<String> anotherAnswerSetForTriviaQuestionSet = List.of("another correct answer", "answerOne", "answerTwo", "answerThree");
-
         List<TriviaQuestionSet> triviaQuestionSetList = new ArrayList<>();
-        triviaQuestionSetList.add(new TriviaQuestionSet(1, "This is an awesome question", "correct answer", answerSetForTriviaQuestionSet));
-        triviaQuestionSetList.add(new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", anotherAnswerSetForTriviaQuestionSet));
+        triviaQuestionSetList.add(new TriviaQuestionSet(1, "This is an awesome question", "correct answer", List.of("correct answer", "answerOne", "answerTwo", "answerThree")));
+        triviaQuestionSetList.add(new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", List.of("another correct answer", "answerOne", "answerTwo", "answerThree")));
 
-        TempTriviaQuestionDB triviaQuestionDB = new TempTriviaQuestionDB(new ArrayList<>(triviaQuestionSetList));
+        triviaQuestionDB.setTriviaQuestionSetList(triviaQuestionSetList);
 
-        TriviaQuestionSetWithoutCorrectAnswer expected = new TriviaQuestionSetWithoutCorrectAnswer(2, "This is another awesome question", anotherAnswerSetForTriviaQuestionSet);
+        TriviaQuestionSetWithoutCorrectAnswer expected = new TriviaQuestionSetWithoutCorrectAnswer(2, "This is another awesome question", List.of("another correct answer", "answerOne", "answerTwo", "answerThree"));
 
         //WHEN
         TriviaQuestionSetWithoutCorrectAnswer actual = triviaQuestionDB.getSingleQuestion(2);
@@ -46,14 +44,11 @@ class TempTriviaQuestionDBTest {
     public void checkAnswer() {
 
     //GIVEN
-        List<String> answerSetForTriviaQuestionSet = List.of("correct answer", "answerOne", "answerTwo", "answerThree");
-        List<String> anotherAnswerSetForTriviaQuestionSet = List.of("another correct answer", "answerOne", "answerTwo", "answerThree");
-
         List<TriviaQuestionSet> triviaQuestionSetList = new ArrayList<>();
-        triviaQuestionSetList.add(new TriviaQuestionSet(1, "This is an awesome question", "correct answer", answerSetForTriviaQuestionSet));
-        triviaQuestionSetList.add(new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", anotherAnswerSetForTriviaQuestionSet));
+        triviaQuestionSetList.add(new TriviaQuestionSet(1, "This is an awesome question", "correct answer", List.of("correct answer", "answerOne", "answerTwo", "answerThree")));
+        triviaQuestionSetList.add(new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", List.of("another correct answer", "answerOne", "answerTwo", "answerThree")));
 
-        TempTriviaQuestionDB triviaQuestionDB = new TempTriviaQuestionDB(new ArrayList<>(triviaQuestionSetList));
+        triviaQuestionDB.setTriviaQuestionSetList(triviaQuestionSetList);
 
         //THEN
         assertTrue(triviaQuestionDB.checkAnswer(1, "correct answer"));
@@ -65,14 +60,11 @@ class TempTriviaQuestionDBTest {
     public void checkAnswerWhenFalse() {
 
         //GIVEN
-        List<String> answerSetForTriviaQuestionSet = List.of("correct answer", "answerOne", "answerTwo", "answerThree");
-        List<String> anotherAnswerSetForTriviaQuestionSet = List.of("another correct answer", "answerOne", "answerTwo", "answerThree");
-
         List<TriviaQuestionSet> triviaQuestionSetList = new ArrayList<>();
-        triviaQuestionSetList.add(new TriviaQuestionSet(1, "This is an awesome question", "correct answer", answerSetForTriviaQuestionSet));
-        triviaQuestionSetList.add(new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", anotherAnswerSetForTriviaQuestionSet));
+        triviaQuestionSetList.add(new TriviaQuestionSet(1, "This is an awesome question", "correct answer", List.of("correct answer", "answerOne", "answerTwo", "answerThree")));
+        triviaQuestionSetList.add(new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", List.of("another correct answer", "answerOne", "answerTwo", "answerThree")));
 
-        TempTriviaQuestionDB triviaQuestionDB = new TempTriviaQuestionDB(new ArrayList<>(triviaQuestionSetList));
+        triviaQuestionDB.setTriviaQuestionSetList(triviaQuestionSetList);
 
         //THEN
         assertFalse(triviaQuestionDB.checkAnswer(1, "Thís is nonsense"));

@@ -3,9 +3,9 @@ package de.laura.project.controller;
 import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.model.TriviaApiDataAggregation;
 import de.laura.project.db.TempTriviaQuestionDB;
-import de.laura.project.model.TriviaAnswerDTO;
+import de.laura.project.model.TriviaSelectedAnswerDTO;
 import de.laura.project.model.TriviaQuestionSet;
-import de.laura.project.model.TriviaQuestionSetDTO;
+import de.laura.project.model.TriviaApiParametersDTO;
 import de.laura.project.model.TriviaQuestionSetWithoutCorrectAnswer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -71,10 +71,10 @@ class TriviaControllerTest {
         when(restTemplate.getForEntity(ApiUrl, TriviaApiDataAggregation.class))
                 .thenReturn(new ResponseEntity<>(mockedTriviaDataAggregationList, HttpStatus.OK));
 
-        TriviaQuestionSetDTO triviaQuestionSetDTO = new TriviaQuestionSetDTO(10, 12, "medium");
+        TriviaApiParametersDTO triviaApiParametersDTO = new TriviaApiParametersDTO(10, 12, "medium");
 
         //WHEN
-        ResponseEntity<Void> response = testRestTemplate.postForEntity(getUrl(), triviaQuestionSetDTO, Void.class);
+        ResponseEntity<Void> response = testRestTemplate.postForEntity(getUrl(), triviaApiParametersDTO, Void.class);
 
         //THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
@@ -93,10 +93,10 @@ class TriviaControllerTest {
         tempTriviaQuestionDB.getTriviaQuestionSetList().add(new TriviaQuestionSet(1, "This is an awesome question", "correct answer", answerForTriviaQuestionSet));
         tempTriviaQuestionDB.getTriviaQuestionSetList().add(new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", anotherAnswerForTriviaQuestionSet));
 
-        TriviaAnswerDTO triviaAnswerDTO = new TriviaAnswerDTO(1, "correct answer");
+        TriviaSelectedAnswerDTO triviaSelectedAnswerDTO = new TriviaSelectedAnswerDTO(1, "correct answer");
 
         //WHEN
-        ResponseEntity<Boolean> response = testRestTemplate.postForEntity(getUrl() + "/answer", triviaAnswerDTO, Boolean.class);
+        ResponseEntity<Boolean> response = testRestTemplate.postForEntity(getUrl() + "/answer", triviaSelectedAnswerDTO, Boolean.class);
 
         //THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
@@ -115,10 +115,10 @@ class TriviaControllerTest {
         tempTriviaQuestionDB.getTriviaQuestionSetList().add(new TriviaQuestionSet(1, "This is an awesome question", "correct answer", answerForTriviaQuestionSet));
         tempTriviaQuestionDB.getTriviaQuestionSetList().add(new TriviaQuestionSet(2, "This is another awesome question", "another correct answer", anotherAnswerForTriviaQuestionSet));
 
-        TriviaAnswerDTO triviaAnswerDTO = new TriviaAnswerDTO(1, "answerOne");
+        TriviaSelectedAnswerDTO triviaSelectedAnswerDTO = new TriviaSelectedAnswerDTO(1, "answerOne");
 
         //WHEN
-        ResponseEntity<Boolean> response = testRestTemplate.postForEntity(getUrl() + "/answer", triviaAnswerDTO, Boolean.class);
+        ResponseEntity<Boolean> response = testRestTemplate.postForEntity(getUrl() + "/answer", triviaSelectedAnswerDTO, Boolean.class);
 
         //THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));

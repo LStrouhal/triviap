@@ -5,14 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 
-public class TriviaAnswerDTO {
+public class TriviaApiParametersDTO {
 
-    private int questionId;
-    private String selectedAnswer;
+    private int amount;
+    private int category;
+    private String difficulty;
 
 }

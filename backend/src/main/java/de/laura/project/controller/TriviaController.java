@@ -1,7 +1,7 @@
 package de.laura.project.controller;
 
-import de.laura.project.model.TriviaAnswerDTO;
-import de.laura.project.model.TriviaQuestionSetDTO;
+import de.laura.project.model.TriviaSelectedAnswerDTO;
+import de.laura.project.model.TriviaApiParametersDTO;
 import de.laura.project.model.TriviaQuestionSetWithoutCorrectAnswer;
 import de.laura.project.service.TriviaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ public class TriviaController {
     }
 
     @PostMapping
-    public void callQuestionList(@RequestBody TriviaQuestionSetDTO triviaQuestionSetDTO){
-        triviaService.callQuestionList(triviaQuestionSetDTO.getAmount(), triviaQuestionSetDTO.getCategory(), triviaQuestionSetDTO.getDifficulty());
+    public void callQuestionList(@RequestBody TriviaApiParametersDTO triviaApiParametersDTO){
+        triviaService.callQuestionList(triviaApiParametersDTO.getAmount(), triviaApiParametersDTO.getCategory(), triviaApiParametersDTO.getDifficulty());
     }
 
     @GetMapping("{questionId}")
@@ -31,7 +31,7 @@ public class TriviaController {
     }
 
     @PostMapping("answer")
-    public boolean checkAnswer (@RequestBody TriviaAnswerDTO triviaAnswerDTO){
-        return triviaService.checkAnswer(triviaAnswerDTO.getQuestionId(), triviaAnswerDTO.getSelectedAnswer());
+    public boolean checkAnswer (@RequestBody TriviaSelectedAnswerDTO triviaSelectedAnswerDTO){
+        return triviaService.checkAnswer(triviaSelectedAnswerDTO.getQuestionId(), triviaSelectedAnswerDTO.getSelectedAnswer());
     }
 }
