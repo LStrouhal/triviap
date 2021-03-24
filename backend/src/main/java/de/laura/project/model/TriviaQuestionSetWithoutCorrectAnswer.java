@@ -12,11 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 
-public class TriviaQuestionSetWithoutAnswer {
+public class TriviaQuestionSetWithoutCorrectAnswer {
 
     private int id;
     private String question;
-    private List<String> answers;;
-
+    private List<String> answers;
 
 }

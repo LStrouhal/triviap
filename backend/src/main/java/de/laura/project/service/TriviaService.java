@@ -4,7 +4,7 @@ import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.service.TriviaApiService;
 import de.laura.project.db.TempTriviaQuestionDB;
 import de.laura.project.model.TriviaQuestionSet;
-import de.laura.project.model.TriviaQuestionSetWithoutAnswer;
+import de.laura.project.model.TriviaQuestionSetWithoutCorrectAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,8 +82,12 @@ public class TriviaService {
         };
     }
 
-    public TriviaQuestionSetWithoutAnswer getSingleQuestion(int id) {
+    public TriviaQuestionSetWithoutCorrectAnswer getSingleQuestion(int id) {
         return tempTriviaQuestionDB.getSingleQuestion(id);
+    }
+
+    public boolean checkAnswer(int questionID, String selectedAnswer) {
+        return tempTriviaQuestionDB.checkAnswer(questionID, selectedAnswer);
     }
 }
 

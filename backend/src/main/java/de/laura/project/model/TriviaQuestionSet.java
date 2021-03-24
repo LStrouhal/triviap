@@ -16,5 +16,4 @@ public class TriviaQuestionSet {
     private String correct_answer;
     private List<String> answers;;
 
-
 }
