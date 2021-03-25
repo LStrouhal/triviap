@@ -4,7 +4,7 @@ import {BsArrowLeftShort} from "react-icons/bs"
 export default function BackButton() {
     return (
         <ArrowButton>
-            < BsArrowLeftShort/>
+            <BsArrowLeftShort/>
         </ArrowButton>
     )
 }
