@@ -1,17 +1,13 @@
-import SelectionsHeader from "./components/SelectionsHeader";
-import Selections from "./components/Selections";
-import PageLayout from "./components/PageLayout";
-import NextButton from "./components/NextButton";
+import TriviaSelector from "./pages/TriviaSelector";
 
 export default function App() {
 
 
     return (
-        <PageLayout>
-            <SelectionsHeader/>
-            <Selections/>
-        </PageLayout>
-    );
+        <div>
+            <TriviaSelector/>
+        </div>
+    )
 }
 
 
