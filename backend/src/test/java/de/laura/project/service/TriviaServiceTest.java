@@ -19,7 +19,8 @@ class TriviaServiceTest {
 
     private final AnswerRandomizerService answerRandomizerService = mock(AnswerRandomizerService.class);
     private final TriviaApiService triviaApiService = mock(TriviaApiService.class);
-    private final TempTriviaQuestionDB tempTriviaQuestionDB = mock(TempTriviaQuestionDB.class);
+
+    private TempTriviaQuestionDB tempTriviaQuestionDB = new TempTriviaQuestionDB();
 
     private final int amount = 2;
     private final int category = 17;
@@ -27,9 +28,9 @@ class TriviaServiceTest {
 
 
     @Test
-    @DisplayName("Adds ID to Question Set")
+    @DisplayName("Assigns an ID to each question set")
 
-    public void addIdToQuestionSetShouldAddIDtoEachQuestionSet() {
+    public void addIdToQuestionSet() {
 
         //GIVEN
         List<String> answers = List.of("answerOne", "answerTwo", "answerThree", "answerFour");
@@ -53,7 +54,7 @@ class TriviaServiceTest {
     @Test
     @DisplayName("Calls API via ApiService using the parameters submitted by the user")
 
-    public void callQuestionListShouldReturnQuestionSetList() {
+    public void callQuestionList() {
 
         //GIVEN
         List<String> answersForApiDataList = List.of("answerOne", "answerTwo", "answerThree");

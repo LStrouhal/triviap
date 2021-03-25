@@ -1,12 +1,12 @@
 package de.laura.project.db;
 
 import de.laura.project.model.TriviaQuestionSet;
-import de.laura.project.model.TriviaQuestionSetWithoutAnswer;
+import de.laura.project.model.TriviaQuestionSetWithoutCorrectAnswer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,38 +17,48 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 
-@Service
+@Repository
 public class TempTriviaQuestionDB {
 
-    private List<TriviaQuestionSet> triviaQuestionSetList;
+    private List<TriviaQuestionSet> triviaQuestionSetList = new ArrayList<>();
 
 
     public List<TriviaQuestionSet> returnQuestionList(List<TriviaQuestionSet> triviaQuestionSetList) {
-        this.triviaQuestionSetList = triviaQuestionSetList;
         return triviaQuestionSetList;
     }
 
-    public TriviaQuestionSetWithoutAnswer getSingleQuestion(int id) {
+    public TriviaQuestionSetWithoutCorrectAnswer getSingleQuestion(int questionId) {
 
-        List<TriviaQuestionSetWithoutAnswer> triviaQuestionSetListWithoutAnswer = new ArrayList<>();
+        List<TriviaQuestionSetWithoutCorrectAnswer> triviaQuestionSetListWithoutAnswer = new ArrayList<>();
 
         triviaQuestionSetListWithoutAnswer = triviaQuestionSetList.stream()
-                .map(triviaQuestionSet -> TriviaQuestionSetWithoutAnswer.builder()
+                .map(triviaQuestionSet -> TriviaQuestionSetWithoutCorrectAnswer.builder()
                         .id(triviaQuestionSet.getId())
                         .question(triviaQuestionSet.getQuestion())
                         .answers(triviaQuestionSet.getAnswers())
                         .build()).collect(Collectors.toList());
 
-
-
-        return
-
-        /*filter(triviaQuestionSet
-                -> triviaQuestionSet.getId() == (id))
+        return triviaQuestionSetListWithoutAnswer.stream()
+                .filter(triviaQuestionSet -> triviaQuestionSet.getId() == (questionId))
                 .findFirst().get();
 
+        }
 
+    public boolean checkAnswer(int questionId, String selectedAnswer) {
 
-                         */
+        String correctAnswer = triviaQuestionSetList.stream()
+                .filter(triviaQuestionSet -> triviaQuestionSet.getId() == (questionId))
+                .findFirst().get().getCorrect_answer();
+
+        if (correctAnswer.equals(selectedAnswer)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void clear() {
+        triviaQuestionSetList.clear();
     }
 }

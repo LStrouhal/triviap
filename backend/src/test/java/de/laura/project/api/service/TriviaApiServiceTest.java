@@ -54,7 +54,7 @@ class TriviaApiServiceTest {
     @Test
     @DisplayName("Builds a URL from the input provided by the user in the frontend")
 
-    public void buildsUrlFromInput () {
+    public void buildUrlFromInput () {
 
         //WHEN
         String newUrl = triviaApiService.buildTriviaApiUrl(amount, category, difficulty);
