@@ -4,14 +4,14 @@ import {callQuestionList} from "../services/apiService";
 
 export default function NextButton({triviaApiParametersDTO}) {
     return (
-        <Footer>
+        <Wrappper>
             <BsArrowRightShort  onClick={() =>
                 callQuestionList({triviaApiParametersDTO}).then((response) => response.data)}/>
-        </Footer>
+        </Wrappper>
     )
 }
 
-const Footer = styled.button`
+const Wrappper = styled.button`
 
   border: none;
   background: var(--greenStandard);

@@ -14,16 +14,13 @@ export default function Selections() {
     const style = useStyles();
 
     const [category, setCategory] = useState("");
-    const handleChange = selection => setCategory(selection.target.value);
-
+    const handleChangeCategory = selection => setCategory(selection.target.value);
 
     const [amount, setAmount] = useState("");
     const handleChangeNumber = selection => setAmount(selection.target.value);
 
-
     const [difficulty, setDifficulty] = useState("");
     const handleChangeDifficulty = selection => setDifficulty(selection.target.value);
-
 
     const triviaApiParametersDTO = {
         "amount": amount,
@@ -47,7 +44,7 @@ export default function Selections() {
             <section>
                 <header> Please select category:</header>
                 <FormControl className={style.formControl}>
-                    <Select className={style.Select} disableUnderline={true} onChange={handleChange} value={category}>
+                    <Select className={style.Select} disableUnderline={true} onChange={handleChangeCategory} value={category}>
                         {categoryList.map(category =>
                             <MenuItem key={category.value} value={category.value}> {category.label}</MenuItem>
                         )}
