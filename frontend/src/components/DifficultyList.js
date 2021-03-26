@@ -8,7 +8,7 @@ export const difficultyList = [
         label: "Medium"
     },
     {
-        value: "difficult",
-        label: "Difficult"
+        value: "hard",
+        label: "Hard"
     }
     ]

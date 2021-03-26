@@ -1,98 +1,98 @@
 export const categoryList = [
     {
-        value: 1,
+        value: 9,
         label: "General Knowledge"
     },
     {
-        value: 2,
-        label: "ntertainment: Books"
-    },
-    {
-        value: 3,
-        label: "Entertainment: Film"
-    },
-    {
-        value: 4,
-        label: "Entertainment: Music"
-    },
-    {
-        value: 5,
-        label: "Entertainment: Musicals & Theaters"
-    },
-    {
-        value: 6,
-        label: "Entertainment: Television"
-    },
-    {
-        value: 7,
-        label: "Entertainment: Video Games"
-    },
-    {
-        value: 8,
-        label: "Entertainment: Board Games"
-    },
-    {
-        value: 9,
-        label: "Science & Nature"
-    },
-    {
         value: 10,
-        label: "Science: Computers"
+        label: "Entertainment: Books"
     },
     {
         value: 11,
-        label: "Science: Mathematics"
+        label: "Entertainment: Film"
     },
     {
         value: 12,
-        label: "Mythology"
+        label: "Entertainment: Music"
     },
     {
         value: 13,
-        label: "Sports"
+        label: "Entertainment: Musicals & Theaters"
     },
     {
         value: 14,
-        label: "Geography"
+        label: "Entertainment: Television"
     },
     {
         value: 15,
-        label: "History"
+        label: "Entertainment: Video Games"
     },
     {
         value: 16,
-        label: "Politics"
+        label: "Entertainment: Board Games"
     },
     {
         value: 17,
-        label: "Art"
+        label: "Science & Nature"
     },
     {
         value: 18,
-        label: "Celebrities"
+        label: "Science: Computers"
     },
     {
         value: 19,
-        label: "Animals"
+        label: "Science: Mathematics"
     },
     {
         value: 20,
-        label: "Vehicles"
+        label: "Mythology"
     },
     {
         value: 21,
-        label: "Entertainment: Comics"
+        label: "Sports"
     },
     {
         value: 22,
-        label: "Science: Gadgets"
+        label: "Geography"
     },
     {
         value: 23,
-        label: "Entertainment: Japanese Anime & Manga"
+        label: "History"
     },
     {
         value: 24,
+        label: "Politics"
+    },
+    {
+        value: 25,
+        label: "Art"
+    },
+    {
+        value: 26,
+        label: "Celebrities"
+    },
+    {
+        value: 27,
+        label: "Animals"
+    },
+    {
+        value: 28,
+        label: "Vehicles"
+    },
+    {
+        value: 29,
+        label: "Entertainment: Comics"
+    },
+    {
+        value: 30,
+        label: "Science: Gadgets"
+    },
+    {
+        value: 31,
+        label: "Entertainment: Japanese Anime & Manga"
+    },
+    {
+        value: 32,
         label: "Entertainment: Cartoon & Animations"
     }
 ]
