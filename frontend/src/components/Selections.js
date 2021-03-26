@@ -5,7 +5,6 @@ import {FormControl, MenuItem, Select} from "@material-ui/core";
 import {difficultyList} from "./DifficultyList";
 import {categoryList} from "./CategoryList";
 import {numberList} from "./NumberList";
-import {callQuestionList} from "../services/apiService";
 import NextButton from "./NextButton";
 
 
