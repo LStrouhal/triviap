@@ -7,4 +7,5 @@ export default styled.div`
   display: grid;
   grid-template-rows: 10% 1fr;
   font-family: "Helvetica Neue";
+  
 `;
