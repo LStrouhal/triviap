@@ -43,7 +43,7 @@ public class TriviaService {
 
         addIDtoQuestionSet(triviaQuestionSetList);
 
-        tempTriviaQuestionDB.returnQuestionList(triviaQuestionSetList);
+        tempTriviaQuestionDB.setQuestionList(triviaQuestionSetList);
 
         return triviaQuestionSetList;
 
