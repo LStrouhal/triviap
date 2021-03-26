@@ -23,8 +23,8 @@ public class TempTriviaQuestionDB {
     private List<TriviaQuestionSet> triviaQuestionSetList = new ArrayList<>();
 
 
-    public List<TriviaQuestionSet> returnQuestionList(List<TriviaQuestionSet> triviaQuestionSetList) {
-        return triviaQuestionSetList;
+    public void setQuestionList(List<TriviaQuestionSet> triviaQuestionSetList) {
+        setTriviaQuestionSetList(triviaQuestionSetList);
     }
 
     public TriviaQuestionSetWithoutCorrectAnswer getSingleQuestion(int questionId) {
