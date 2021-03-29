@@ -1,29 +1,37 @@
-import styled from "styled-components/macro"
+import {useParams} from "react-router-dom";
+import {checkAnswer} from "../services/apiService";
+import {AnswerButtonStyle} from "./AnswersButtonStyle";
 
 export default function Answers({answers}) {
 
+    const {questionID} = useParams()
+
+    function handleSubmit(answer) {
+        const triviaSelectedAnswerDTO = {questionId: questionID, selectedAnswer: answer}
+        checkAnswer(triviaSelectedAnswerDTO)
+            .then((answerStatus) => {
+                    if (answerStatus) {
+                        alert("Correct answer. Please click the next button")
+                        document.getElementById(answer).style.backgroundColor = "limeGreen"
+                        document.getElementById(answer).style.color = "#f7f7f2"
+                    } else {
+                        alert("Incorrect answer. Please try again")
+                        document.getElementById(answer).style.backgroundColor = "red"
+                        document.getElementById(answer).style.color = "#f7f7f2"
+                    }
+                }
+            )
+    }
+
+
     return (
-        <AnswerList>
-            {answers.map(answer =>
-                <button> key= {answer} {answer} </button>
+        <section>
+            {answers.map((answer) =>
+                <AnswerButtonStyle id={answer} key={answer} answer={answer} onClick={() => handleSubmit(answer)}>
+                    {answer}
+                </AnswerButtonStyle>
             )}
-        </AnswerList>
+        </section>
     )
 }
 
-const AnswerList = styled.ul`
-
-  button {
-    background-color: var(--beigeStandard);
-    color: var(--greenStandard);
-    height: min-content;
-    width: 100%;
-    padding: 20px;
-    justify-content: left;
-    display: flex;
-    flex-flow: wrap;
-    font-size: 1.2em;
-    font-family: "Helvetica Neue";
-    margin-bottom: 20px;
-  }
-`

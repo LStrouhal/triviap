@@ -1,28 +1,32 @@
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TriviaSelector from "./pages/TriviaSelector";
 import PageLayout from "./components/PageLayout";
 import TriviaGame from "./pages/TriviaGame";
+import { useState } from "react";
 
 export default function App() {
+  const [numberOfQuestions, setNumberOfQuestions] = useState(0);
 
-    return (
-        <div>
-            <Router>
-                <Switch>
-                    <PageLayout>
-                        <Route exact path="/">
-                        </Route>
-                        <Route exact path="/questions">
-                            <TriviaSelector/>
-                        </Route>
-                        <Route path="/questions/:questionID">
-                            <TriviaGame/>
-                        </Route>
-                    </PageLayout>
-                </Switch>
-            </Router>
-        </div>
-    )
+  return (
+    <div>
+      <Router>
+        <Switch>
+          <PageLayout>
+            <Route exact path="/"></Route>
+            <Route exact path="/questions">
+              <TriviaSelector
+                onClickSetNumberOfQuestions={setNumberOfQuestions}
+              />
+            </Route>
+            <Route exact path="/questions/results">
+              <TriviaResults />
+            </Route>
+            <Route path="/questions/:questionID">
+              <TriviaGame numberOfQuestions={numberOfQuestions} />
+            </Route>
+          </PageLayout>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
-
-

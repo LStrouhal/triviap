@@ -8,5 +8,8 @@ export const callQuestionList = (triviaApiParametersDTO) =>
 export const getSingleQuestion = (questionID) =>
     axios.get( `${baseUrl}/${questionID}`).then(response => response.data);
 
+export const checkAnswer = (triviaSelectedAnswerDTO) =>
+    axios.post(baseUrl + "/answer", triviaSelectedAnswerDTO).then(response => response.data);
+
 
 
