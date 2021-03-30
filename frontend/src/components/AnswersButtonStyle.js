@@ -1,7 +1,6 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const AnswerButtonStyle = styled.button`
-
   background-color: var(--beigeStandard);
   color: var(--greenStandard);
   height: min-content;
@@ -15,9 +14,15 @@ export const AnswerButtonStyle = styled.button`
   margin-bottom: 20px;
   cursor: pointer;
 
-  :hover {
-    background-color: lightgrey;
-    border: none;
-  }
-  
-  `
+  ${(props) =>
+    props.status === "correct" &&
+    css`
+      background-color: limegreen;
+    `}
+
+  ${(props) =>
+    props.status === "incorrect" &&
+    css`
+      background-color: red;
+    `}
+`;
