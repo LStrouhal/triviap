@@ -19,7 +19,7 @@ export default function App() {
                 onClickSetNumberOfQuestions={setNumberOfQuestions}
               />
             </Route>
-            <Route exact path="/result">
+            <Route exact path="questions/result">
               <TriviaResults> </TriviaResults>
             </Route>
             <Route path="/questions/:questionID">
