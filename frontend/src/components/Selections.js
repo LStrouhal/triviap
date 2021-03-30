@@ -1,71 +1,101 @@
-import styled from "styled-components/macro"
-import {useState} from "react";
+import styled from "styled-components/macro";
+import { useState } from "react";
 import useStyles from "./DropdownStyle";
-import {FormControl, MenuItem, Select} from "@material-ui/core";
-import {difficultyList} from "./DifficultyList";
-import {categoryList} from "./CategoryList";
-import {numberList} from "./NumberList";
-import {callQuestionList} from "../services/apiService";
-import NextButton from "./NextButton";
+import { FormControl, MenuItem, Select } from "@material-ui/core";
+import { difficultyList } from "./DifficultyList";
+import { categoryList } from "./CategoryList";
+import { numberList } from "./NumberList";
+import SelectionsNextButton from "./SelectionsNextButton";
 
+export default function Selections({ onClickSetNumberOfQuestions }) {
+  const style = useStyles();
 
-export default function Selections() {
+  const [category, setCategory] = useState("");
+  const handleChangeCategory = (selection) =>
+    setCategory(selection.target.value);
 
-    const style = useStyles();
+  const [amount, setAmount] = useState("");
+  const handleChangeNumber = (selection) => {
+    const newAmount = selection.target.value;
+    setAmount(newAmount);
+    onClickSetNumberOfQuestions(newAmount);
+  };
 
-    const [category, setCategory] = useState("");
-    const handleChangeCategory = selection => setCategory(selection.target.value);
+  const [difficulty, setDifficulty] = useState("");
+  const handleChangeDifficulty = (selection) =>
+    setDifficulty(selection.target.value);
 
-    const [amount, setAmount] = useState("");
-    const handleChangeNumber = selection => setAmount(selection.target.value);
+  const triviaApiParametersDTO = {
+    amount: amount,
+    category: category,
+    difficulty: difficulty,
+  };
 
-    const [difficulty, setDifficulty] = useState("");
-    const handleChangeDifficulty = selection => setDifficulty(selection.target.value);
-
-    const triviaApiParametersDTO = {
-        "amount": amount,
-        "category": category,
-        "difficulty": difficulty
-    };
-
-    return (
-        <Wrapper>
-            <section>
-                <header> Please select number of questions:</header>
-                <FormControl className={style.formControl}>
-                    <Select className={style.Select} disableUnderline={true} onChange={handleChangeNumber} value={amount}>
-                        {numberList.map(number =>
-                            <MenuItem className={style.MenuItem} key={number.value}
-                                      value={number.value}> {number.label}</MenuItem>
-                        )}
-                    </Select>
-                </FormControl>
-            </section>
-            <section>
-                <header> Please select category:</header>
-                <FormControl className={style.formControl}>
-                    <Select className={style.Select} disableUnderline={true} onChange={handleChangeCategory} value={category}>
-                        {categoryList.map(category =>
-                            <MenuItem key={category.value} value={category.value}> {category.label}</MenuItem>
-                        )}
-                    </Select>
-                </FormControl>
-            </section>
-            <section>
-                <header> Please select level:</header>
-                <FormControl className={style.formControl}>
-                    <Select className={style.Select} disableUnderline={true} onChange={handleChangeDifficulty} value={difficulty}>
-                        {difficultyList.map(difficulty =>
-                            <MenuItem key={difficulty.value} value={difficulty.value}> {difficulty.label}</MenuItem>
-                        )}
-                    </Select>
-                </FormControl>
-            </section>
-            <footer>
-                <NextButton triviaApiParametersDTO={triviaApiParametersDTO} />
-            </footer>
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <section>
+        <header> Please select number of questions:</header>
+        <FormControl className={style.formControl}>
+          <Select
+            className={style.Select}
+            disableUnderline={true}
+            onChange={handleChangeNumber}
+            value={amount}
+          >
+            {numberList.map((number) => (
+              <MenuItem
+                className={style.MenuItem}
+                key={number.value}
+                value={number.value}
+              >
+                {" "}
+                {number.label}{" "}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </section>
+      <section>
+        <header> Please select category:</header>
+        <FormControl className={style.formControl}>
+          <Select
+            className={style.Select}
+            disableUnderline={true}
+            onChange={handleChangeCategory}
+            value={category}
+          >
+            {categoryList.map((category) => (
+              <MenuItem key={category.value} value={category.value}>
+                {" "}
+                {category.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </section>
+      <section>
+        <header> Please select level:</header>
+        <FormControl className={style.formControl}>
+          <Select
+            className={style.Select}
+            disableUnderline={true}
+            onChange={handleChangeDifficulty}
+            value={difficulty}
+          >
+            {difficultyList.map((difficulty) => (
+              <MenuItem key={difficulty.value} value={difficulty.value}>
+                {" "}
+                {difficulty.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </section>
+      <footer>
+        <SelectionsNextButton triviaApiParametersDTO={triviaApiParametersDTO} />
+      </footer>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.main`
@@ -84,6 +114,4 @@ const Wrapper = styled.main`
     display: flex;
     justify-content: flex-end;
   }
-
-
-`
+`;
