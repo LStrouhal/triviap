@@ -4,7 +4,7 @@ import { AnswerButtonStyle } from "./AnswersButtonStyle";
 import { useState } from "react";
 import parse from "html-react-parser";
 
-export default function Answers({ answers }) {
+export default function Answers({ answers, points, setPoints }) {
   const { questionID } = useParams();
   const [answerStatus, setAnswerStatus] = useState([]);
 
@@ -24,6 +24,14 @@ export default function Answers({ answers }) {
       const status = response ? "correct" : "incorrect";
       const updatedArray = [...answerStatus, { id: answer, status }];
       setAnswerStatus(updatedArray);
+      let updatedCount = points;
+      if (response) {
+        updatedCount += 10;
+      } else {
+        updatedCount -= 10;
+      }
+      setPoints(updatedCount);
+      console.log("Points:" + points);
     });
   }
 

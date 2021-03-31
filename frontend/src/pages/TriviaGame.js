@@ -2,7 +2,7 @@ import Questions from "../components/Questions";
 import styled from "styled-components/macro";
 import { useState } from "react";
 
-export default function TriviaGame({ numberOfQuestions }) {
+export default function TriviaGame({ numberOfQuestions, points, setPoints }) {
   const [visibleSeconds, setVisibleSeconds] = useState(30);
 
   return (
@@ -13,6 +13,8 @@ export default function TriviaGame({ numberOfQuestions }) {
       <Questions
         numberOfQuestions={numberOfQuestions}
         setVisibleSeconds={setVisibleSeconds}
+        setPoints={setPoints}
+        points={points}
       />
     </>
   );
@@ -25,4 +27,5 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   font-size: 1.2em;
+  padding: 10px;
 `;
