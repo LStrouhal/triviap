@@ -5,7 +5,6 @@ export default styled.div`
   background: var(--greenStandard);
   color: var(--beigeStandard);
   display: grid;
-  grid-template-rows: 10% 1fr;
-  font-family: "Helvetica Neue";
-  
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "header" "body";
 `;
