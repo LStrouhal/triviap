@@ -8,7 +8,7 @@ export default function TriviaGame({ numberOfQuestions }) {
   return (
     <>
       <Header>
-        <p id="seconds"> {visibleSeconds} seconds left</p>
+        <p> {visibleSeconds} seconds left </p>
       </Header>
       <Questions
         numberOfQuestions={numberOfQuestions}

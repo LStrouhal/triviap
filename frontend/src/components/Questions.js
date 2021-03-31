@@ -46,7 +46,7 @@ export default function Questions({ numberOfQuestions, setVisibleSeconds }) {
 
   return (
     <Wrapper>
-      <p> {parse(questionSet.question)} </p>
+      <p>{parse(questionSet.question)}</p>
       <section>
         <Answers answers={questionSet.answers} />
       </section>
