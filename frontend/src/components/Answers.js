@@ -1,37 +1,53 @@
-import {useParams} from "react-router-dom";
-import {checkAnswer} from "../services/apiService";
-import {AnswerButtonStyle} from "./AnswersButtonStyle";
+import { useParams } from "react-router-dom";
+import { checkAnswer } from "../services/apiService";
+import { AnswerButtonStyle } from "./AnswersButtonStyle";
+import { useState } from "react";
+import parse from "html-react-parser";
 
-export default function Answers({answers}) {
+export default function Answers({ answers }) {
+  const { questionID } = useParams();
+  const [answerStatus, setAnswerStatus] = useState([]);
 
-    const {questionID} = useParams()
-
-    function handleSubmit(answer) {
-        const triviaSelectedAnswerDTO = {questionId: questionID, selectedAnswer: answer}
-        checkAnswer(triviaSelectedAnswerDTO)
-            .then((answerStatus) => {
-                    if (answerStatus) {
-                        alert("Correct answer. Please click the next button")
-                        document.getElementById(answer).style.backgroundColor = "limeGreen"
-                        document.getElementById(answer).style.color = "#f7f7f2"
-                    } else {
-                        alert("Incorrect answer. Please try again")
-                        document.getElementById(answer).style.backgroundColor = "red"
-                        document.getElementById(answer).style.color = "#f7f7f2"
-                    }
-                }
-            )
+  function handleSubmit(answer) {
+    const hasAnswer = answerStatus.some(
+      (answerStatusObject) => answerStatusObject.id === answer
+    );
+    if (hasAnswer) {
+      return;
     }
+    const triviaSelectedAnswerDTO = {
+      questionId: questionID,
+      selectedAnswer: answer,
+    };
 
+    checkAnswer(triviaSelectedAnswerDTO).then((response) => {
+      const status = response ? "correct" : "incorrect";
+      const updatedArray = [...answerStatus, { id: answer, status }];
+      setAnswerStatus(updatedArray);
+    });
+  }
 
-    return (
-        <section>
-            {answers.map((answer) =>
-                <AnswerButtonStyle id={answer} key={answer} answer={answer} onClick={() => handleSubmit(answer)}>
-                    {answer}
-                </AnswerButtonStyle>
-            )}
-        </section>
-    )
+  const getAnswerStatus = (answer) => {
+    const matchAnswer = answerStatus.find(
+      (answerStatusObject) => answerStatusObject.id === answer
+    );
+    if (matchAnswer !== undefined) {
+      return matchAnswer.status;
+    }
+  };
+
+  return (
+    <section>
+      {answers.map((answer) => (
+        <AnswerButtonStyle
+          key={answer}
+          answer={answer}
+          status={getAnswerStatus(answer)}
+          onClick={() => handleSubmit(answer)}
+        >
+          {parse(answer)}
+        </AnswerButtonStyle>
+      ))}
+    </section>
+  );
 }
-

@@ -5,19 +5,18 @@ import styled from "styled-components/macro";
 import Answers from "./Answers";
 import { NextButtonStyle } from "./NextButtonStyle";
 import { BsArrowRightShort } from "react-icons/bs";
+import parse from "html-react-parser";
 
-export default function Questions({ numberOfQuestions }) {
+export default function Questions({ numberOfQuestions, setVisibleSeconds }) {
   const history = useHistory();
   const { questionID } = useParams();
   const [questionSet, setQuestionSet] = useState(undefined);
+  const [seconds, setSeconds] = useState(30);
 
   useEffect(() => {
     getSingleQuestion(questionID).then(setQuestionSet);
+    setSeconds(30);
   }, [questionID]);
-
-  if (!questionSet) {
-    return <p> loading </p>;
-  }
 
   const loadNextQuestion = () => {
     console.log({ numberOfQuestions, questionID });
@@ -29,9 +28,25 @@ export default function Questions({ numberOfQuestions }) {
     }
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (seconds >= 0) {
+        setSeconds(seconds - 1);
+        setVisibleSeconds(seconds);
+      } else {
+        loadNextQuestion();
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [seconds]);
+
+  if (!questionSet) {
+    return <p> loading </p>;
+  }
+
   return (
     <Wrapper>
-      <p>{questionSet.question}</p>
+      <p> {parse(questionSet.question)} </p>
       <section>
         <Answers answers={questionSet.answers} />
       </section>
