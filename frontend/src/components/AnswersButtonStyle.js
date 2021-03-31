@@ -10,7 +10,6 @@ export const AnswerButtonStyle = styled.button`
   width: 100%;
   padding: 20px;
   font-size: 1.2em;
-  font-family: "Helvetica Neue";
   margin-bottom: 20px;
   cursor: pointer;
 
