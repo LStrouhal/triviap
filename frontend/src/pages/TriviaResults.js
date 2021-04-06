@@ -1,16 +1,36 @@
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
+import { savePoints } from "../services/apiService";
+import { useHistory } from "react-router-dom";
 
-export default function TriviaResults({ points }) {
+export default function TriviaResults({ points, selectionParameters }) {
+  const history = useHistory();
+  const triviaPointSavingDTO = {
+    amount: selectionParameters.amount,
+    category: selectionParameters.category,
+    difficulty: selectionParameters.difficulty,
+    points: points,
+  };
+
+  function handleSubmit(triviaPointSavingDTO) {
+    savePoints(triviaPointSavingDTO).then((response) => {
+      //const pointsSaved = response;
+      history.push("/scoreOverview");
+    });
+  }
+
   return (
     <Wrapper>
       <h1> Congratulations! </h1>
       <p> You scored: {points} points </p>
       <section>
         <Link to="/questions">
-          <button>New Game</button>
+          <button> New Game</button>
         </Link>
-        <button> Score Details</button>
+        <button onClick={() => handleSubmit(triviaPointSavingDTO)}>
+          {" "}
+          Save Score
+        </button>
       </section>
     </Wrapper>
   );
@@ -43,6 +63,6 @@ const Wrapper = styled.section`
 
   button {
     font-size: 1em;
-    justify-content: left;
+    width: 150px;
   }
 `;
