@@ -7,7 +7,12 @@ import { NextButtonStyle } from "./NextButtonStyle";
 import { BsArrowRightShort } from "react-icons/bs";
 import parse from "html-react-parser";
 
-export default function Questions({ numberOfQuestions, setVisibleSeconds }) {
+export default function Questions({
+  numberOfQuestions,
+  setVisibleSeconds,
+  setPoints,
+  points,
+}) {
   const history = useHistory();
   const { questionID } = useParams();
   const [questionSet, setQuestionSet] = useState(undefined);
@@ -21,7 +26,7 @@ export default function Questions({ numberOfQuestions, setVisibleSeconds }) {
   const loadNextQuestion = () => {
     console.log({ numberOfQuestions, questionID });
     if (numberOfQuestions == questionID) {
-      history.push("/questions/" + "results");
+      history.push("/results");
     } else {
       const currentQuestionID = parseInt(questionID, 10);
       history.push("/questions/" + (currentQuestionID + 1));
@@ -48,7 +53,11 @@ export default function Questions({ numberOfQuestions, setVisibleSeconds }) {
     <Wrapper>
       <p>{parse(questionSet.question)}</p>
       <section>
-        <Answers answers={questionSet.answers} />
+        <Answers
+          answers={questionSet.answers}
+          setPoints={setPoints}
+          points={points}
+        />
       </section>
       <footer>
         <NextButtonStyle>
