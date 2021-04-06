@@ -1,12 +1,9 @@
 package de.laura.project.controller;
 
-import de.laura.project.model.TriviaSelectedAnswerDTO;
-import de.laura.project.model.TriviaApiParametersDTO;
-import de.laura.project.model.TriviaQuestionSetWithoutCorrectAnswer;
+import de.laura.project.model.*;
 import de.laura.project.service.TriviaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequestMapping("questions")
@@ -33,5 +30,10 @@ public class TriviaController {
     @PostMapping("answer")
     public boolean checkAnswer (@RequestBody TriviaSelectedAnswerDTO triviaSelectedAnswerDTO){
         return triviaService.checkAnswer(triviaSelectedAnswerDTO.getQuestionId(), triviaSelectedAnswerDTO.getSelectedAnswer());
+    }
+
+    @PostMapping("points")
+    public TriviaPointSummary savePoints (@RequestBody TriviaPointSavingDTO triviaPointSavingDTO){
+        return triviaService.savePoints(triviaPointSavingDTO.getAmount(), triviaPointSavingDTO.getCategory(), triviaPointSavingDTO.getDifficulty(), triviaPointSavingDTO.getPoints());
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "points")
 
-public class TriviaPointSavingDTO {
+public class TriviaPointSummary {
 
     private int category;
     private int amount;

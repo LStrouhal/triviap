@@ -2,6 +2,7 @@ package de.laura.project.service;
 
 import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.service.TriviaApiService;
+import de.laura.project.db.PointsMongoDB;
 import de.laura.project.db.TempTriviaQuestionDB;
 import de.laura.project.model.TriviaQuestionSet;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +20,7 @@ class TriviaServiceTest {
 
     private final AnswerRandomizerService answerRandomizerService = mock(AnswerRandomizerService.class);
     private final TriviaApiService triviaApiService = mock(TriviaApiService.class);
-
+private final PointsMongoDB pointsMongoDB = mock(PointsMongoDB.class);
     private TempTriviaQuestionDB tempTriviaQuestionDB = new TempTriviaQuestionDB();
 
     private final int amount = 2;
@@ -39,7 +40,7 @@ class TriviaServiceTest {
                 new TriviaQuestionSet(0, "This is an awesome question", "CorrectAnswer", answers),
                 new TriviaQuestionSet(0, "This is another awesome question", "Looks correct", answers));
 
-        TriviaService triviaService = new TriviaService(triviaApiService, tempTriviaQuestionDB, answerRandomizerService);
+        TriviaService triviaService = new TriviaService(triviaApiService, tempTriviaQuestionDB, answerRandomizerService, pointsMongoDB);
 
         // WHEN
         triviaService.addIDtoQuestionSet(triviaQuestionSet);
@@ -76,7 +77,7 @@ class TriviaServiceTest {
 
         when(answerRandomizerService.generateRandomNumber(4)).thenReturn(0);
 
-        TriviaService triviaService = new TriviaService(triviaApiService, tempTriviaQuestionDB, answerRandomizerService);
+        TriviaService triviaService = new TriviaService(triviaApiService, tempTriviaQuestionDB, answerRandomizerService, pointsMongoDB);
 
         // WHEN
         List<TriviaQuestionSet> actual = triviaService.callQuestionList(amount, category, difficulty);

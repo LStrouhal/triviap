@@ -2,7 +2,10 @@ package de.laura.project.service;
 
 import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.service.TriviaApiService;
+import de.laura.project.db.PointsMongoDB;
 import de.laura.project.db.TempTriviaQuestionDB;
+import de.laura.project.model.TriviaPointSavingDTO;
+import de.laura.project.model.TriviaPointSummary;
 import de.laura.project.model.TriviaQuestionSet;
 import de.laura.project.model.TriviaQuestionSetWithoutCorrectAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +21,16 @@ public class TriviaService {
     private final TriviaApiService triviaApiService;
     private final TempTriviaQuestionDB tempTriviaQuestionDB;
     private final AnswerRandomizerService answerRandomizerService;
-
+    private final PointsMongoDB pointsMongoDB;
 
     @Autowired
-    public TriviaService(TriviaApiService triviaApiService, TempTriviaQuestionDB tempTriviaQuestionDB, AnswerRandomizerService answerRandomizerService) {
+    public TriviaService(TriviaApiService triviaApiService, TempTriviaQuestionDB tempTriviaQuestionDB, AnswerRandomizerService answerRandomizerService, PointsMongoDB pointsMongoDB) {
         this.triviaApiService = triviaApiService;
         this.tempTriviaQuestionDB = tempTriviaQuestionDB;
         this.answerRandomizerService = answerRandomizerService;
-    }
+        this.pointsMongoDB = pointsMongoDB;
 
+    }
 
     public List<TriviaQuestionSet> callQuestionList(int amount, int category, String difficulty) {
 
@@ -46,7 +50,6 @@ public class TriviaService {
         tempTriviaQuestionDB.setQuestionList(triviaQuestionSetList);
 
         return triviaQuestionSetList;
-
     }
 
 
@@ -78,7 +81,6 @@ public class TriviaService {
         for (TriviaQuestionSet triviaQuestion : triviaQuestionSetList) {
             triviaQuestion.setId(n);
             n++;
-
         };
     }
 
@@ -88,6 +90,11 @@ public class TriviaService {
 
     public boolean checkAnswer(int questionID, String selectedAnswer) {
         return tempTriviaQuestionDB.checkAnswer(questionID, selectedAnswer);
+    }
+
+    public TriviaPointSummary savePoints(int amount, int category, String difficulty, int points) {
+        TriviaPointSummary triviaPointSummary = TriviaPointSummary.builder().category(category).amount(amount).difficulty(difficulty).points(points).build();
+        return pointsMongoDB.save(triviaPointSummary);
     }
 }
 
