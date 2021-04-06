@@ -7,7 +7,10 @@ import { categoryList } from "./CategoryList";
 import { numberList } from "./NumberList";
 import SelectionsNextButton from "./SelectionsNextButton";
 
-export default function Selections({ onClickSetNumberOfQuestions }) {
+export default function Selections({
+  onClickSetNumberOfQuestions,
+  setSelectionParameters,
+}) {
   const style = useStyles();
 
   const [category, setCategory] = useState("");
@@ -48,8 +51,7 @@ export default function Selections({ onClickSetNumberOfQuestions }) {
                 key={number.value}
                 value={number.value}
               >
-                {" "}
-                {number.label}{" "}
+                {number.label}
               </MenuItem>
             ))}
           </Select>
@@ -66,7 +68,6 @@ export default function Selections({ onClickSetNumberOfQuestions }) {
           >
             {categoryList.map((category) => (
               <MenuItem key={category.value} value={category.value}>
-                {" "}
                 {category.label}
               </MenuItem>
             ))}
@@ -84,7 +85,6 @@ export default function Selections({ onClickSetNumberOfQuestions }) {
           >
             {difficultyList.map((difficulty) => (
               <MenuItem key={difficulty.value} value={difficulty.value}>
-                {" "}
                 {difficulty.label}
               </MenuItem>
             ))}
@@ -92,7 +92,10 @@ export default function Selections({ onClickSetNumberOfQuestions }) {
         </FormControl>
       </section>
       <footer>
-        <SelectionsNextButton triviaApiParametersDTO={triviaApiParametersDTO} />
+        <SelectionsNextButton
+          setSelectionParameters={setSelectionParameters}
+          triviaApiParametersDTO={triviaApiParametersDTO}
+        />
       </footer>
     </Wrapper>
   );

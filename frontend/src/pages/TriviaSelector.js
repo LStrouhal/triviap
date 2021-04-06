@@ -2,13 +2,19 @@ import Selections from "../components/Selections";
 import BackButton from "../components/BackButton";
 import styled from "styled-components/macro";
 
-export default function TriviaSelector({ onClickSetNumberOfQuestions }) {
+export default function TriviaSelector({
+  onClickSetNumberOfQuestions,
+  setSelectionParameters,
+}) {
   return (
     <>
       <Header>
         <BackButton />
       </Header>
-      <Selections onClickSetNumberOfQuestions={onClickSetNumberOfQuestions} />
+      <Selections
+        onClickSetNumberOfQuestions={onClickSetNumberOfQuestions}
+        setSelectionParameters={setSelectionParameters}
+      />
     </>
   );
 }
