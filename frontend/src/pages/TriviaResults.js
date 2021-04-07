@@ -14,7 +14,6 @@ export default function TriviaResults({ points, selectionParameters }) {
 
   function handleSubmit(triviaPointSavingDTO) {
     savePoints(triviaPointSavingDTO).then((response) => {
-      //const pointsSaved = response;
       history.push("/scoreOverview");
     });
   }

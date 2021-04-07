@@ -5,6 +5,8 @@ import TriviaGame from "./pages/TriviaGame";
 import TriviaWelcome from "./pages/TriviaWelcome";
 import { useState } from "react";
 import TriviaResults from "./pages/TriviaResults";
+import ScoreOverview from "./pages/ScoreOverview";
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
   const [numberOfQuestions, setNumberOfQuestions] = useState(0);
@@ -16,6 +18,9 @@ export default function App() {
     <div>
       <Router>
         <Switch>
+          <Route exact path="/login">
+            <LoginPage />
+          </Route>
           <Route exact path="/welcome">
             <TriviaWelcome />
           </Route>
@@ -41,6 +46,11 @@ export default function App() {
               points={points}
               selectionParameters={selectionParameters}
             />
+          </Route>
+          <Route exact path="/scoreOverview">
+            <Layout>
+              <ScoreOverview />
+            </Layout>
           </Route>
         </Switch>
       </Router>
