@@ -1,6 +1,7 @@
 import Questions from "../components/Questions";
 import styled from "styled-components/macro";
-import { useState } from "react";
+import React, { useState } from "react";
+import ManLogo from "../components/ManLogo";
 
 export default function TriviaGame({ numberOfQuestions, points, setPoints }) {
   const [visibleSeconds, setVisibleSeconds] = useState(30);
@@ -8,7 +9,9 @@ export default function TriviaGame({ numberOfQuestions, points, setPoints }) {
   return (
     <>
       <Header>
-        <p> {visibleSeconds} seconds left </p>
+        <div> </div>
+        <div> {visibleSeconds} sec </div>
+        <ManLogo />
       </Header>
       <Questions
         numberOfQuestions={numberOfQuestions}
@@ -23,9 +26,13 @@ export default function TriviaGame({ numberOfQuestions, points, setPoints }) {
 const Header = styled.header`
   background: var(--beigeStandard);
   color: var(--greenStandard);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2em;
-  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px 20px 10px 20px;
+
+  div {
+    display: flex;
+    align-self: center;
+    font-size: 1.2em;
+  }
 `;
