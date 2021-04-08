@@ -4,14 +4,12 @@ import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.service.TriviaApiService;
 import de.laura.project.db.PointsMongoDB;
 import de.laura.project.db.TempTriviaQuestionDB;
-import de.laura.project.model.TriviaPointSavingDTO;
-import de.laura.project.model.TriviaPointSummary;
-import de.laura.project.model.TriviaQuestionSet;
-import de.laura.project.model.TriviaQuestionSetWithoutCorrectAnswer;
+import de.laura.project.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,7 +79,8 @@ public class TriviaService {
         for (TriviaQuestionSet triviaQuestion : triviaQuestionSetList) {
             triviaQuestion.setId(n);
             n++;
-        };
+        }
+        ;
     }
 
     public TriviaQuestionSetWithoutCorrectAnswer getSingleQuestion(int id) {
@@ -92,10 +91,94 @@ public class TriviaService {
         return tempTriviaQuestionDB.checkAnswer(questionID, selectedAnswer);
     }
 
-    public TriviaPointSummary savePoints(int amount, int category, String difficulty, int points) {
-        TriviaPointSummary triviaPointSummary = TriviaPointSummary.builder().category(category).amount(amount).difficulty(difficulty).points(points).build();
-        return pointsMongoDB.save(triviaPointSummary);
+    public TriviaPointSummary savePoints(String user, int category, String difficulty, int amount, int points) {
+
+        List<TriviaPointDetails> currentGamePointDetailsList = new ArrayList<>();
+        TriviaPointDetails currentGamePointDetails = new TriviaPointDetails(difficulty, amount, points);
+        currentGamePointDetailsList.add(currentGamePointDetails);
+
+        List<TriviaPointCategory> currentGamePointCategoryList = new ArrayList<>();
+        TriviaPointCategory currentGamePointCategory = new TriviaPointCategory(category, currentGamePointDetailsList);
+        currentGamePointCategoryList.add(currentGamePointCategory);
+
+
+        TriviaPointSummary triviaPointSummaryFromMongoDb = pointsMongoDB.findById(user).get();
+        List<TriviaPointCategory> triviaPointCategoryFromMongoDbList = triviaPointSummaryFromMongoDb.getTriviaPointCategory();
+
+        boolean categoryExists = false;
+
+        for (TriviaPointCategory triviaPointCategoryFromDb : triviaPointCategoryFromMongoDbList) {
+            if (triviaPointCategoryFromDb.getCategory() == category) {
+                categoryExists = true;
+                if (triviaPointCategoryFromDb.getTriviaPointDetails().stream()
+                        .filter(triviaPointDetail -> triviaPointDetail.getDifficulty().equals(difficulty)).findAny().isEmpty()) {
+                    List<TriviaPointDetails> triviaPointDetailsFromMongoDbList = triviaPointCategoryFromDb.getTriviaPointDetails();
+                    triviaPointDetailsFromMongoDbList.add(currentGamePointDetails);
+                    triviaPointCategoryFromDb.setTriviaPointDetails(triviaPointDetailsFromMongoDbList);
+
+                } else {
+                    List<TriviaPointDetails> triviaPointDetailsFromMongoDbList = triviaPointCategoryFromDb.getTriviaPointDetails();
+                    List<TriviaPointDetails> adjustedTriviaPointDetails = triviaPointDetailsFromMongoDbList
+                            .stream().map(oldTriviaPointDetails -> new TriviaPointDetails(
+                                    oldTriviaPointDetails.getDifficulty(),
+                                    (oldTriviaPointDetails.getAmount() + amount),
+                                    (oldTriviaPointDetails.getPoints() + points))).collect(Collectors.toList());
+                    triviaPointCategoryFromDb.setTriviaPointDetails(adjustedTriviaPointDetails);
+                }
+                List<TriviaPointCategory> finalTriviaPointCategory = new ArrayList<>();
+                finalTriviaPointCategory.add(triviaPointCategoryFromDb);
+                triviaPointSummaryFromMongoDb.setTriviaPointCategory(finalTriviaPointCategory);
+            }
+        }
+        if (!categoryExists) {
+            triviaPointSummaryFromMongoDb.getTriviaPointCategory().add(currentGamePointCategory);
+        }
+        return pointsMongoDB.save(triviaPointSummaryFromMongoDb);
+    }
+
+    public List<TriviaPointCategoryDTO> getScoreByUser(String user) {
+        TriviaPointSummary triviaPointSummaryFromMongoDb = pointsMongoDB.findById(user).get();
+        List<TriviaPointCategory> triviaPointCategoryFromMongoDbList = triviaPointSummaryFromMongoDb.getTriviaPointCategory();
+        List<TriviaPointCategoryDTO> triviaPointCategoryDTOList = triviaPointCategoryFromMongoDbList.stream()
+                .map(triviaPointCategory -> TriviaPointCategoryDTO.builder()
+                        .triviaPointDetails(triviaPointCategory.getTriviaPointDetails())
+                        .category(convertCategory(triviaPointCategory.getCategory()))
+                        .build())
+                .collect(Collectors.toList());
+        return triviaPointCategoryDTOList;
+    }
+
+    public String convertCategory(int category) {
+        HashMap<Integer, String> categoryMap = new HashMap<>();
+        categoryMap.put(9, "General Knowledge");
+        categoryMap.put(10, "Entertainment: Books");
+        categoryMap.put(11, "Entertainment: Film");
+        categoryMap.put(12, "Entertainment: Music");
+        categoryMap.put(13, "Entertainment: Musicals & Theaters");
+        categoryMap.put(14, "Entertainment: Television");
+        categoryMap.put(15, "Entertainment: Video Games");
+        categoryMap.put(16, "Entertainment: Board Games");
+        categoryMap.put(17, "Science & Nature");
+        categoryMap.put(18, "Science: Computers");
+        categoryMap.put(19, "Science: Mathematics");
+        categoryMap.put(20, "Mythology");
+        categoryMap.put(21, "Sports");
+        categoryMap.put(22, "Geography");
+        categoryMap.put(23, "History");
+        categoryMap.put(24, "Politics");
+        categoryMap.put(25, "Art");
+        categoryMap.put(26, "Celebrities");
+        categoryMap.put(27, "Animals");
+        categoryMap.put(28, "Vehicles");
+        categoryMap.put(29, "Entertainment: Comics");
+        categoryMap.put(30, "Science: Gadgets");
+        categoryMap.put(31, "Entertainment: Japanese Anime & Manga");
+        categoryMap.put(32, "Entertainment: Cartoon & Animations");
+        return categoryMap.get(category);
     }
 }
+
+
+
 
 
