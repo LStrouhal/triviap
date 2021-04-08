@@ -4,7 +4,7 @@ import React from "react";
 import ManLogo from "../components/ManLogo";
 import { Link } from "react-router-dom";
 
-export default function TotalPoints() {
+export default function ScoreOverview() {
   return (
     <>
       <Header>
