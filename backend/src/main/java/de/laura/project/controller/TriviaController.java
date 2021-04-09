@@ -5,6 +5,9 @@ import de.laura.project.service.TriviaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("questions")
 
@@ -34,6 +37,11 @@ public class TriviaController {
 
     @PostMapping("points")
     public TriviaPointSummary savePoints (@RequestBody TriviaPointSavingDTO triviaPointSavingDTO){
-        return triviaService.savePoints(triviaPointSavingDTO.getAmount(), triviaPointSavingDTO.getCategory(), triviaPointSavingDTO.getDifficulty(), triviaPointSavingDTO.getPoints());
+        return triviaService.savePoints(triviaPointSavingDTO.getUser(), triviaPointSavingDTO.getCategory(), triviaPointSavingDTO.getDifficulty(), triviaPointSavingDTO.getAmount(), triviaPointSavingDTO.getPoints());
+    }
+
+    @GetMapping("/scoreOverview/{user}")
+    public List<TriviaPointCategoryDTO> getScoreByUser (@PathVariable String user) {
+        return triviaService.getScoreByUser(user);
     }
 }
