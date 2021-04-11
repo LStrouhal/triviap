@@ -6,5 +6,4 @@ export default styled.div`
   color: var(--beigeStandard);
   display: grid;
   grid-template-rows: auto 1fr;
-  grid-template-areas: "header" "body";
 `;

@@ -8,10 +8,14 @@ export const AnswerButtonStyle = styled.button`
   flex-flow: wrap;
   justify-content: left;
   width: 100%;
-  padding: 20px;
-  font-size: 1.2em;
-  margin-bottom: 20px;
+  padding: 15px;
+  font-size: 1.1em;
+  font-family: "Playfair Display', serif";
+  margin-bottom: 15px;
   cursor: pointer;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: none;
 
   ${(props) =>
     props.status === "correct" &&
