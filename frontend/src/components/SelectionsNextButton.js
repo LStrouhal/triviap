@@ -6,6 +6,7 @@ import { NextButtonStyle } from "./NextButtonStyle";
 export default function SelectionsNextButton({
   triviaApiParametersDTO,
   setSelectionParameters,
+  setPoints,
 }) {
   const history = useHistory();
   const hasDifficulty = triviaApiParametersDTO.difficulty.length > 0;
@@ -16,6 +17,7 @@ export default function SelectionsNextButton({
     if (hasDifficulty || hasAmount || hasCategory) {
       event.preventDefault();
       callQuestionList(triviaApiParametersDTO).then(() => {
+        setPoints(0);
         setSelectionParameters(triviaApiParametersDTO);
         history.push("/questions/1");
       });

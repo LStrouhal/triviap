@@ -10,6 +10,7 @@ import SelectionsNextButton from "./SelectionsNextButton";
 export default function Selections({
   onClickSetNumberOfQuestions,
   setSelectionParameters,
+  setPoints,
 }) {
   const style = useStyles();
 
@@ -37,7 +38,7 @@ export default function Selections({
   return (
     <Wrapper>
       <section>
-        <header> Please select number of questions:</header>
+        <header> Select number of questions:</header>
         <FormControl className={style.formControl}>
           <Select
             className={style.Select}
@@ -58,7 +59,7 @@ export default function Selections({
         </FormControl>
       </section>
       <section>
-        <header> Please select category:</header>
+        <header> Select category:</header>
         <FormControl className={style.formControl}>
           <Select
             className={style.Select}
@@ -75,7 +76,7 @@ export default function Selections({
         </FormControl>
       </section>
       <section>
-        <header> Please select level:</header>
+        <header> Select level of difficulty:</header>
         <FormControl className={style.formControl}>
           <Select
             className={style.Select}
@@ -95,6 +96,7 @@ export default function Selections({
         <SelectionsNextButton
           setSelectionParameters={setSelectionParameters}
           triviaApiParametersDTO={triviaApiParametersDTO}
+          setPoints={setPoints}
         />
       </footer>
     </Wrapper>
@@ -103,10 +105,9 @@ export default function Selections({
 
 const Wrapper = styled.main`
   overflow-y: scroll;
-  padding: 0 20px;
+  padding: 0 30px;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr auto;
-  grid-gap: 10px;
+  grid-template-rows: 20% 20% 20% auto;
 
   header {
     font-size: 1.2em;
