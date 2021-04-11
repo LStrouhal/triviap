@@ -12,6 +12,7 @@ export default function App() {
   const [numberOfQuestions, setNumberOfQuestions] = useState(0);
   const [points, setPoints] = useState(0);
   const [selectionParameters, setSelectionParameters] = useState({});
+  const [user, setUser] = useState("");
   console.log(selectionParameters);
 
   return (
@@ -19,16 +20,17 @@ export default function App() {
       <Router>
         <Switch>
           <Route exact path="/login">
-            <LoginPage />
+            <LoginPage setUser={setUser} />
           </Route>
           <Route exact path="/welcome">
-            <TriviaWelcome />
+            <TriviaWelcome user={user} />
           </Route>
           <Route exact path="/questions">
             <Layout>
               <TriviaSelector
                 onClickSetNumberOfQuestions={setNumberOfQuestions}
                 setSelectionParameters={setSelectionParameters}
+                setPoints={setPoints}
               />
             </Layout>
           </Route>
@@ -43,13 +45,14 @@ export default function App() {
           </Route>
           <Route exact path="/results">
             <TriviaResults
+              user={user}
               points={points}
               selectionParameters={selectionParameters}
             />
           </Route>
           <Route exact path="/scoreOverview">
             <Layout>
-              <ScoreOverview />
+              <ScoreOverview user={user} />
             </Layout>
           </Route>
         </Switch>

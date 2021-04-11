@@ -69,7 +69,7 @@ export default function Questions({
 }
 
 const Wrapper = styled.main`
-  padding: 0 20px;
+  padding: 0 30px;
   display: grid;
   grid-template-rows: auto 1fr auto;
 
@@ -82,8 +82,9 @@ const Wrapper = styled.main`
     justify-content: left;
     width: 100%;
     padding: 20px;
-    font-size: 1.2em;
-    margin-bottom: 40px;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    border-radius: 10px;
   }
 
   footer {
