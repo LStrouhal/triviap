@@ -1,25 +1,32 @@
 import styled from "styled-components/macro";
-import BackButton from "../components/BackButton";
+import { BsArrowLeftShort } from "react-icons/bs";
 import React from "react";
-import ManLogo from "../components/ManLogo";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Scores from "../components/Scores";
 
-export default function ScoreOverview() {
+export default function ScoreOverview({ user }) {
+  const history = useHistory();
+
   return (
-    <>
-      <Header>
-        <Link to="/results">
-          <BackButton />
-        </Link>
-        <ManLogo />
-      </Header>
-    </>
+    <Wrapper>
+      <Scores user={user} />
+      <footer>
+        <BsArrowLeftShort onClick={() => history.push("/welcome")} />
+      </footer>
+    </Wrapper>
   );
 }
 
-const Header = styled.header`
-  background: var(--beigeStandard);
-  padding: 10px 20px 10px 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+const Wrapper = styled.section`
+  padding: 30px 30px 0px 30px;
+  layout: grid;
+  grid-template-rows: 90% 10%;
+
+  footer {
+    color: var(--beigeStandard);
+    background: var(--greenStandard);
+    font-size: 40px;
+    cursor: pointer;
+    border: none;
+  }
 `;
