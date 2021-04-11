@@ -29,7 +29,9 @@ export default function Scores({ user }) {
 const Wrapper = styled.section`
   h1 {
     color: var(--beigeStandard);
-    font-size: 2em;
+    font-size: 2.5em;
+    padding-bottom: 25px;
+    margin: 0px;
   }
 
   li {
