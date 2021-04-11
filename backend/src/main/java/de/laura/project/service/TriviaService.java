@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -110,24 +111,20 @@ public class TriviaService {
         for (TriviaPointCategory triviaPointCategoryFromDb : triviaPointCategoryFromMongoDbList) {
             if (triviaPointCategoryFromDb.getCategory() == category) {
                 categoryExists = true;
-                if (triviaPointCategoryFromDb.getTriviaPointDetails().stream()
-                        .filter(triviaPointDetail -> triviaPointDetail.getDifficulty().equals(difficulty)).findAny().isEmpty()) {
+                Optional<TriviaPointDetails> difficultyLevel = triviaPointCategoryFromDb.getTriviaPointDetails().stream()
+                        .filter(triviaPointDetail -> triviaPointDetail.getDifficulty().equals(difficulty)).findAny();
+                if (difficultyLevel.isEmpty()) {
                     List<TriviaPointDetails> triviaPointDetailsFromMongoDbList = triviaPointCategoryFromDb.getTriviaPointDetails();
                     triviaPointDetailsFromMongoDbList.add(currentGamePointDetails);
                     triviaPointCategoryFromDb.setTriviaPointDetails(triviaPointDetailsFromMongoDbList);
 
                 } else {
-                    List<TriviaPointDetails> triviaPointDetailsFromMongoDbList = triviaPointCategoryFromDb.getTriviaPointDetails();
-                    List<TriviaPointDetails> adjustedTriviaPointDetails = triviaPointDetailsFromMongoDbList
-                            .stream().map(oldTriviaPointDetails -> new TriviaPointDetails(
-                                    oldTriviaPointDetails.getDifficulty(),
-                                    (oldTriviaPointDetails.getAmount() + amount),
-                                    (oldTriviaPointDetails.getPoints() + points))).collect(Collectors.toList());
-                    triviaPointCategoryFromDb.setTriviaPointDetails(adjustedTriviaPointDetails);
+                    TriviaPointDetails pointDetailsPlayedDifficulty = difficultyLevel.get();
+                    int oldPoints = pointDetailsPlayedDifficulty.getPoints();
+                    pointDetailsPlayedDifficulty.setPoints((oldPoints + points));
+                    int oldAmount = pointDetailsPlayedDifficulty.getAmount();
+                    pointDetailsPlayedDifficulty.setAmount(oldAmount + amount);
                 }
-                List<TriviaPointCategory> finalTriviaPointCategory = new ArrayList<>();
-                finalTriviaPointCategory.add(triviaPointCategoryFromDb);
-                triviaPointSummaryFromMongoDb.setTriviaPointCategory(finalTriviaPointCategory);
             }
         }
         if (!categoryExists) {
