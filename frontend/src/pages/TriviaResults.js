@@ -1,13 +1,14 @@
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
 import { savePoints } from "../services/apiService";
 import { useHistory } from "react-router-dom";
+import React from "react";
 
-export default function TriviaResults({ points, selectionParameters }) {
+export default function TriviaResults({ user, points, selectionParameters }) {
   const history = useHistory();
   const triviaPointSavingDTO = {
-    amount: selectionParameters.amount,
+    user: user,
     category: selectionParameters.category,
+    amount: selectionParameters.amount,
     difficulty: selectionParameters.difficulty,
     points: points,
   };
@@ -23,9 +24,7 @@ export default function TriviaResults({ points, selectionParameters }) {
       <h1> Congratulations! </h1>
       <p> You scored: {points} points </p>
       <section>
-        <Link to="/questions">
-          <button> New Game</button>
-        </Link>
+        <button onClick={() => history.push("/questions")}>New Game</button>
         <button onClick={() => handleSubmit(triviaPointSavingDTO)}>
           {" "}
           Save Score
@@ -41,27 +40,39 @@ const Wrapper = styled.section`
   color: var(--beigeStandard);
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  padding: 20px;
+  padding: 30px;
 
   h1 {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    align-items: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
   }
 
   p {
-    font-size: 1.2em;
+    font-size: 1.6em;
+    justify-self: center;
+    margin: 0;
   }
 
   section {
     display: flex;
     flex-direction: column;
-    width: 150px;
-    grid-gap: 10px;
+    grid-gap: 15px;
+    width: 100%;
+    padding-top: 20px;
   }
 
   button {
+    width: 100%;
+    border-radius: 10px;
     font-size: 1em;
-    width: 150px;
+    height: 35px;
+    outline: none;
+    box-shadow: none;
+    font-family: "Playfair Display', serif";
+    border: none;
   }
 `;

@@ -44,7 +44,14 @@ export default function LoginPage({ setUser }) {
             value={userName}
             placeholder="Enter User"
             font-size="16px"
-            style={{ backgroundColor: "#f7f7f2", fontSize: "1em" }}
+            style={{
+              backgroundColor: "#f7f7f2",
+              fontSize: "1em",
+              font: "Playfair Display', serif",
+              outline: "none",
+              border: "none",
+              boxShadow: "none",
+            }}
             onChange={(event) => {
               const player = event.target.value;
               setUserName(player);
@@ -71,13 +78,13 @@ const Wrapper = styled.form`
   display: grid;
   grid-template-rows: 30% 30% auto;
   padding: 30px;
-  grid-gap: 10px;
   font-family: "Playfair Display', serif";
 
   header {
     font-size: 4em;
     align-self: flex-end;
     justify-self: center;
+    padding-bottom: 10px;
   }
 
   div {
@@ -85,6 +92,7 @@ const Wrapper = styled.form`
     justify-content: center;
     align-self: center;
     height: 100%;
+    padding-bottom: 10px;
   }
 
   buttons {
@@ -95,6 +103,7 @@ const Wrapper = styled.form`
     padding-top: 20px;
 
     input {
+      padding: 0px;
       width: 100%;
       border-radius: 10px;
       height: 35px;
@@ -105,9 +114,11 @@ const Wrapper = styled.form`
       align-self: end;
       outline: none;
       box-shadow: none;
+      font-family: "Playfair Display', serif";
     }
 
     button {
+      padding: 0px;
       width: 100%;
       border-radius: 10px;
       height: 35px;
@@ -115,6 +126,7 @@ const Wrapper = styled.form`
       background-color: var(--beigeStandard);
       font-color: var(--standardGreen);
       border: none;
+      font-family: "Playfair Display', serif";
     }
   }
 `;
