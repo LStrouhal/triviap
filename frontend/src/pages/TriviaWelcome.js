@@ -1,36 +1,21 @@
-import { useSpring, animated } from "react-spring";
 import styled from "styled-components/macro";
-import { NextButtonStyle } from "../components/NextButtonStyle";
-import { BsArrowRightShort } from "react-icons/bs";
-import { Link, useHistory } from "react-router-dom";
-import logo from "../images/whiteMan.png";
+import { Link } from "react-router-dom";
+
 import React from "react";
 
-export default function TriviaWelcome() {
-  const history = useHistory();
-  const handleSubmit = (event) => {
-    history.push("/questions");
-  };
-
+export default function TriviaWelcome({ user }) {
   return (
     <Wrapper>
-      <header>
-        <p> Welcome to</p>
-        <logo> triviap</logo>
-      </header>
-      <body>
+      <header> Welcome back,</header>
+      <p> {user}! </p>
+      <buttons>
         <Link to="/questions">
           <button> New Game</button>
         </Link>
         <Link to="/scoreOverview">
           <button> Score Overview</button>
         </Link>
-      </body>
-      <footer>
-        <NextButtonStyle>
-          <BsArrowRightShort onClick={handleSubmit} />
-        </NextButtonStyle>
-      </footer>
+      </buttons>
     </Wrapper>
   );
 }
@@ -39,42 +24,44 @@ const Wrapper = styled.section`
   height: 100vh;
   background: var(--greenStandard);
   color: var(--beigeStandard);
-  padding: 0 20px;
+  padding: 30px;
   display: grid;
-  grid-template-rows: 1fr 25% auto;
+  grid-template-rows: 30% 30% auto;
   grid-gap: 10px;
+  font-family: "Playfair Display', serif";
+  
 
-  header {
-    align-self: center;
+    header {
+      display: flex;
+      justify-content: center;
+      font-size: 3em;
+      align-self: end;
+    }
 
     p {
       display: flex;
       justify-content: center;
-      font-size: 2em;
-    }
-
-    logo {
-      display: flex;
-      justify-content: center;
       font-size: 4em;
-      font-family: fascinate;
+      margin: 0px;
+      text-transform: lowercase
     }
   }
 
-  body {
+ buttons {
     display: flex;
     flex-direction: column;
-    width: 150px;
-    grid-gap: 10px;
+    grid-gap: 15px;
+    width: 100%;
+    padding-top: 20px;
 
     button {
-      width: 150px;
+      height: 35px;
+      width: 100%;
       font-size: 1em;
+      background-color: var(--beigeStandard);
+      font-color: var(--standardGreen);
+      border: none;
+      border-radius: 10px;
     }
-  }
-
-  footer {
-    display: flex;
-    justify-content: flex-end;
   }
 `;
