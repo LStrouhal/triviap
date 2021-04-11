@@ -16,16 +16,23 @@ export const AnswerButtonStyle = styled.button`
   border-radius: 10px;
   outline: none;
   box-shadow: none;
+  border: none;
 
   ${(props) =>
     props.status === "correct" &&
     css`
       background-color: limegreen;
+      outline: none;
+      box-shadow: none;
+      border: none;
     `}
 
   ${(props) =>
     props.status === "incorrect" &&
     css`
       background-color: red;
+      outline: none;
+      box-shadow: none;
+      border: none;
     `}
 `;

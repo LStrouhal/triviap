@@ -8,6 +8,7 @@ export default function TriviaWelcome({ user }) {
     <Wrapper>
       <header> Welcome back,</header>
       <p> {user}! </p>
+      <div> Current score: 800 points</div>
       <buttons>
         <Link to="/questions">
           <button> New Game</button>
@@ -26,28 +27,31 @@ const Wrapper = styled.section`
   color: var(--beigeStandard);
   padding: 30px;
   display: grid;
-  grid-template-rows: 30% 30% auto;
-  grid-gap: 10px;
+  grid-template-rows: 30% 20% 10% auto;
   font-family: "Playfair Display', serif";
-  
 
-    header {
-      display: flex;
-      justify-content: center;
-      font-size: 3em;
-      align-self: end;
-    }
-
-    p {
-      display: flex;
-      justify-content: center;
-      font-size: 4em;
-      margin: 0px;
-      text-transform: lowercase
-    }
+  header {
+    display: flex;
+    font-size: 3em;
+    align-self: end;
+    padding-bottom: 10px;
+    text-align: center;
   }
 
- buttons {
+  p {
+    font-size: 3em;
+    margin: 0px;
+    text-transform: lowercase;
+    padding-bottom: 10px;
+    justify-self: center;
+  }
+
+  div {
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  buttons {
     display: flex;
     flex-direction: column;
     grid-gap: 15px;
@@ -62,6 +66,7 @@ const Wrapper = styled.section`
       font-color: var(--standardGreen);
       border: none;
       border-radius: 10px;
+      font-family: "Playfair Display', serif";
     }
   }
 `;
