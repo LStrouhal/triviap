@@ -3,6 +3,7 @@ import logo from "../images/whiteMan.png";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
+import { NewGameButtonStyle } from "../components/NewGameButtonStyle";
 
 export default function LoginPage({ setUser }) {
   const history = useHistory();
@@ -58,13 +59,13 @@ export default function LoginPage({ setUser }) {
               setUser(player);
             }}
           />
-          <button
+          <NewGameButtonStyle
             backgroundColor="#f7f7f2"
             disabled={!hasUserName}
             onClick={() => history.push("/welcome")}
           >
             Submit User
-          </button>
+          </NewGameButtonStyle>
         </buttons>
       </animated.div>
     </Wrapper>
@@ -114,18 +115,6 @@ const Wrapper = styled.form`
       align-self: end;
       outline: none;
       box-shadow: none;
-      font-family: "Playfair Display', serif";
-    }
-
-    button {
-      padding: 0px;
-      width: 100%;
-      border-radius: 10px;
-      height: 35px;
-      font-size: 1em;
-      background-color: var(--beigeStandard);
-      font-color: var(--standardGreen);
-      border: none;
       font-family: "Playfair Display', serif";
     }
   }
