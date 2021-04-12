@@ -2,6 +2,7 @@ import styled from "styled-components/macro";
 import { savePoints } from "../services/apiService";
 import { useHistory } from "react-router-dom";
 import React from "react";
+import { NewGameButtonStyle } from "../components/NewGameButtonStyle";
 
 export default function TriviaResults({ user, points, selectionParameters }) {
   const history = useHistory();
@@ -24,11 +25,13 @@ export default function TriviaResults({ user, points, selectionParameters }) {
       <h1> Congratulations! </h1>
       <p> You scored: {points} points </p>
       <section>
-        <button onClick={() => history.push("/questions")}>New Game</button>
-        <button onClick={() => handleSubmit(triviaPointSavingDTO)}>
+        <NewGameButtonStyle onClick={() => history.push("/questions")}>
+          New Game
+        </NewGameButtonStyle>
+        <NewGameButtonStyle onClick={() => handleSubmit(triviaPointSavingDTO)}>
           {" "}
           Save Score
-        </button>
+        </NewGameButtonStyle>
       </section>
     </Wrapper>
   );
@@ -63,16 +66,5 @@ const Wrapper = styled.section`
     grid-gap: 15px;
     width: 100%;
     padding-top: 20px;
-  }
-
-  button {
-    width: 100%;
-    border-radius: 10px;
-    font-size: 1em;
-    height: 35px;
-    outline: none;
-    box-shadow: none;
-    font-family: "Playfair Display', serif";
-    border: none;
   }
 `;

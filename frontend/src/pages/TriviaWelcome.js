@@ -1,21 +1,23 @@
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
-
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { NewGameButtonStyle } from "../components/NewGameButtonStyle";
 
 export default function TriviaWelcome({ user }) {
+  const history = useHistory();
+
   return (
     <Wrapper>
       <header> Welcome back,</header>
       <p> {user}! </p>
       <div> Current score: 800 points</div>
       <buttons>
-        <Link to="/questions">
-          <button> New Game</button>
-        </Link>
-        <Link to="/scoreOverview">
-          <button> Score Overview</button>
-        </Link>
+        <NewGameButtonStyle onClick={() => history.push("/questions")}>
+          New Game
+        </NewGameButtonStyle>
+        <NewGameButtonStyle onClick={() => history.push("/scoreOverview")}>
+          Score Overview
+        </NewGameButtonStyle>
       </buttons>
     </Wrapper>
   );
@@ -57,16 +59,5 @@ const Wrapper = styled.section`
     grid-gap: 15px;
     width: 100%;
     padding-top: 20px;
-
-    button {
-      height: 35px;
-      width: 100%;
-      font-size: 1em;
-      background-color: var(--beigeStandard);
-      font-color: var(--standardGreen);
-      border: none;
-      border-radius: 10px;
-      font-family: "Playfair Display', serif";
-    }
   }
 `;
