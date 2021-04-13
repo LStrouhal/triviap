@@ -1,4 +1,4 @@
-FROM openjdk:15
+FROM openjdk:14
 
 ENV ENVIRONMENT=prod
 
