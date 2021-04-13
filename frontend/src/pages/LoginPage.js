@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import { NewGameButtonStyle } from "../components/NewGameButtonStyle";
+import { checkUserExists } from "../services/apiService";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
 export default function LoginPage({ setUser }) {
   const history = useHistory();
@@ -28,6 +30,16 @@ export default function LoginPage({ setUser }) {
       return;
     }
     setUserName("");
+  };
+
+  const handleClick = () => {
+    checkUserExists(userName).then((response) => {
+      if (response) {
+        history.push("/welcome");
+      } else {
+        alert("User does not exist. Please try again or add user");
+      }
+    });
   };
 
   return (
@@ -62,23 +74,38 @@ export default function LoginPage({ setUser }) {
           <NewGameButtonStyle
             backgroundColor="#f7f7f2"
             disabled={!hasUserName}
-            onClick={() => history.push("/welcome")}
+            onClick={handleClick}
           >
-            Submit User
+            Login
           </NewGameButtonStyle>
         </buttons>
       </animated.div>
+      <AddNewUserButton>
+        <animated.div style={propsLogin}>
+          <AiOutlineUserAdd onClick={() => history.push("/register")} />
+        </animated.div>
+      </AddNewUserButton>
     </Wrapper>
   );
 }
+
+const AddNewUserButton = styled.button`
+  border: none;
+  background: var(--greenStandard);
+  color: var(--beigeStandard);
+  font-size: 30px;
+  justify-self: end;
+  align-self: end;
+  padding: 0px;
+`;
 
 const Wrapper = styled.form`
   height: 100vh;
   background: var(--greenStandard);
   color: var(--beigeStandard);
   display: grid;
-  grid-template-rows: 30% 30% auto;
-  padding: 30px;
+  grid-template-rows: 30% 30% auto 10%;
+  padding: 30px 30px 20px 30px;
   font-family: "Playfair Display', serif";
 
   header {
@@ -93,7 +120,6 @@ const Wrapper = styled.form`
     justify-content: center;
     align-self: center;
     height: 100%;
-    padding-bottom: 10px;
   }
 
   buttons {
@@ -111,7 +137,6 @@ const Wrapper = styled.form`
       font-size: 1em;
       text-align: center;
       background-color: var(--beigeStandard);
-      font-color: var(--standardGreen);
       align-self: end;
       outline: none;
       box-shadow: none;

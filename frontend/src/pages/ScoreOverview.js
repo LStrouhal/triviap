@@ -9,10 +9,11 @@ export default function ScoreOverview({ user }) {
 
   return (
     <Wrapper>
+      <h1> Score Overview </h1>
       <Scores user={user} />
-      <footer>
+      <button>
         <BsArrowLeftShort onClick={() => history.push("/welcome")} />
-      </footer>
+      </button>
     </Wrapper>
   );
 }
@@ -20,13 +21,27 @@ export default function ScoreOverview({ user }) {
 const Wrapper = styled.section`
   padding: 30px 30px 0px 30px;
   layout: grid;
-  grid-template-rows: 90% 10%;
+  grid-template-rows: 1fr 1fr auto;
+  color: var(--beigeStandard);
+  background: var(--greenStandard);
 
-  footer {
+  h1 {
     color: var(--beigeStandard);
-    background: var(--greenStandard);
+    font-size: 2.5em;
+    padding-bottom: 25px;
+    margin: 0px;
+  }
+
+  button {
+    padding: 0px;
+    align-self: end;
+    justify-self: baseline;
+    display: flex;
+    align-content: end;
     font-size: 40px;
     cursor: pointer;
     border: none;
+    color: var(--beigeStandard);
+    background: var(--greenStandard);
   }
 `;

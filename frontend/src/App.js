@@ -7,6 +7,7 @@ import { useState } from "react";
 import TriviaResults from "./pages/TriviaResults";
 import ScoreOverview from "./pages/ScoreOverview";
 import LoginPage from "./pages/LoginPage";
+import TriviaRegister from "./pages/TriviaRegister";
 
 export default function App() {
   const [numberOfQuestions, setNumberOfQuestions] = useState(0);
@@ -24,6 +25,9 @@ export default function App() {
           </Route>
           <Route exact path="/welcome">
             <TriviaWelcome user={user} />
+          </Route>
+          <Route exact path="/register">
+            <TriviaRegister setUser={setUser} />
           </Route>
           <Route exact path="/questions">
             <Layout>
@@ -51,9 +55,7 @@ export default function App() {
             />
           </Route>
           <Route exact path="/scoreOverview">
-            <Layout>
-              <ScoreOverview user={user} />
-            </Layout>
+            <ScoreOverview user={user} />
           </Route>
         </Switch>
       </Router>

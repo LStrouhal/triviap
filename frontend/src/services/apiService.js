@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "/questions";
+const userUrl = "/api/user";
 const scoreOverviewUrl = "/questions/scoreOverview";
 const totalScoreUrl = "/questions/totalScore";
 
@@ -25,3 +26,9 @@ export const getScoreByUser = (user) =>
 
 export const getTotalPointsByUser = (user) =>
   axios.get(`${totalScoreUrl}/${user}`).then((response) => response.data);
+
+export const checkUserExists = (user) =>
+  axios.get(`${userUrl}/${user}`).then((response) => response.data);
+
+export const addUser = (userDTO) =>
+  axios.post(userUrl, userDTO).then((response) => response.data);
