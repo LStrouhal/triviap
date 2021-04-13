@@ -22,6 +22,7 @@ public class TriviaService {
     private final AnswerRandomizerService answerRandomizerService;
     private final PointsMongoDB pointsMongoDB;
 
+
     @Autowired
     public TriviaService(TriviaApiService triviaApiService, TempTriviaQuestionDB tempTriviaQuestionDB, AnswerRandomizerService answerRandomizerService, PointsMongoDB pointsMongoDB) {
         this.triviaApiService = triviaApiService;
@@ -172,6 +173,23 @@ public class TriviaService {
         categoryMap.put(31, "Entertainment: Japanese Anime & Manga");
         categoryMap.put(32, "Entertainment: Cartoon & Animations");
         return categoryMap.get(category);
+    }
+
+    public int getTotalPointsByUser(String user) {
+
+        TriviaPointSummary triviaPointSummaryFromMongoDb = pointsMongoDB.findById(user).get();
+        List<TriviaPointCategory> triviaPointCategoryFromMongoDbList = triviaPointSummaryFromMongoDb.getTriviaPointCategory();
+
+        int totalPoints = 0;
+
+        for (TriviaPointCategory triviaPointCategory:triviaPointCategoryFromMongoDbList) {
+            List<TriviaPointDetails> triviaPointDetailsList = triviaPointCategory.getTriviaPointDetails();
+            for (TriviaPointDetails triviaPointDetails: triviaPointDetailsList) {
+                int points = triviaPointDetails.getPoints();
+                totalPoints = totalPoints + points;
+            }
+        }
+     return totalPoints;
     }
 }
 

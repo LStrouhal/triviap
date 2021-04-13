@@ -2,6 +2,7 @@ import axios from "axios";
 
 const baseUrl = "/questions";
 const scoreOverviewUrl = "/questions/scoreOverview";
+const totalScoreUrl = "/questions/totalScore";
 
 export const callQuestionList = (triviaApiParametersDTO) =>
   axios.post(baseUrl, triviaApiParametersDTO).then();
@@ -21,3 +22,6 @@ export const savePoints = (triviaPointSavingDTO) =>
 
 export const getScoreByUser = (user) =>
   axios.get(`${scoreOverviewUrl}/${user}`).then((response) => response.data);
+
+export const getTotalPointsByUser = (user) =>
+  axios.get(`${totalScoreUrl}/${user}`).then((response) => response.data);

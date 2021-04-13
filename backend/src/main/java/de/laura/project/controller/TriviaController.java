@@ -44,4 +44,10 @@ public class TriviaController {
     public List<TriviaPointCategoryDTO> getScoreByUser (@PathVariable String user) {
         return triviaService.getScoreByUser(user);
     }
+
+    @GetMapping("/totalScore/{user}")
+    public int getTotalPointsByUser (@PathVariable String user) {
+        return triviaService.getTotalPointsByUser(user);
+    }
+
 }

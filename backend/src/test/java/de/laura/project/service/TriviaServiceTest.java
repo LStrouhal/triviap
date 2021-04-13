@@ -4,12 +4,16 @@ import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.service.TriviaApiService;
 import de.laura.project.db.PointsMongoDB;
 import de.laura.project.db.TempTriviaQuestionDB;
+import de.laura.project.model.TriviaPointCategory;
+import de.laura.project.model.TriviaPointDetails;
+import de.laura.project.model.TriviaPointSummary;
 import de.laura.project.model.TriviaQuestionSet;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.mockito.Mockito.*;
@@ -20,7 +24,7 @@ class TriviaServiceTest {
 
     private final AnswerRandomizerService answerRandomizerService = mock(AnswerRandomizerService.class);
     private final TriviaApiService triviaApiService = mock(TriviaApiService.class);
-private final PointsMongoDB pointsMongoDB = mock(PointsMongoDB.class);
+    private final PointsMongoDB pointsMongoDB = mock(PointsMongoDB.class);
     private TempTriviaQuestionDB tempTriviaQuestionDB = new TempTriviaQuestionDB();
 
     private final int amount = 2;
@@ -61,8 +65,8 @@ private final PointsMongoDB pointsMongoDB = mock(PointsMongoDB.class);
         List<String> answersForApiDataList = List.of("answerOne", "answerTwo", "answerThree");
 
         List<TriviaApiData> triviaApiDataList = List.of(
-        new TriviaApiData("12", "multiple choice", "easy", "This is an awesome question", "correct answer", answersForApiDataList),
-        new TriviaApiData("12", "multiple choice", "easy", "This is another awesome question", "another correct answer", answersForApiDataList));
+                new TriviaApiData("12", "multiple choice", "easy", "This is an awesome question", "correct answer", answersForApiDataList),
+                new TriviaApiData("12", "multiple choice", "easy", "This is another awesome question", "another correct answer", answersForApiDataList));
 
         List<String> answerForTriviaQuestionSet = List.of("correct answer", "answerOne", "answerTwo", "answerThree");
         List<String> anotherAnswerForTriviaQuestionSet = List.of("another correct answer", "answerOne", "answerTwo", "answerThree");
@@ -83,6 +87,41 @@ private final PointsMongoDB pointsMongoDB = mock(PointsMongoDB.class);
         List<TriviaQuestionSet> actual = triviaService.callQuestionList(amount, category, difficulty);
 
         //THEN
-        assertThat((actual), is (expected));
+        assertThat((actual), is(expected));
+    }
+
+
+    @Test
+    @DisplayName("Withdraws data for one user from DB and adds up his points")
+
+    public void getTotalPointsByUserTest() {
+
+        //GIVEN
+        List<TriviaPointDetails> triviaPointDetailsListNine = new ArrayList<>();
+        triviaPointDetailsListNine.add(new TriviaPointDetails("easy", 10, 20));
+        triviaPointDetailsListNine.add(new TriviaPointDetails("medium", 20, 40));
+        triviaPointDetailsListNine.add(new TriviaPointDetails("hard", 40, 10));
+        List<TriviaPointDetails> triviaPointDetailsListTen = new ArrayList<>();
+        triviaPointDetailsListTen.add(new TriviaPointDetails("hard", 10, 10));
+
+        List<TriviaPointCategory> triviaPointCategoryList = new ArrayList<>();
+        triviaPointCategoryList.add(new TriviaPointCategory(9, triviaPointDetailsListNine));
+        triviaPointCategoryList.add(new TriviaPointCategory(10, triviaPointDetailsListTen));
+
+        String user = "Laura";
+        TriviaPointSummary triviaPointSummary = new TriviaPointSummary(user, triviaPointCategoryList);
+        when(pointsMongoDB.findById(user)).thenReturn(Optional.of(triviaPointSummary));
+
+        TriviaService triviaService = new TriviaService(triviaApiService, tempTriviaQuestionDB, answerRandomizerService, pointsMongoDB);
+
+        int expected = 80;
+
+        //WHEN
+
+        int actual = triviaService.getTotalPointsByUser("Laura");
+
+        //THEN
+
+        assertThat((actual),is(expected));
     }
 }

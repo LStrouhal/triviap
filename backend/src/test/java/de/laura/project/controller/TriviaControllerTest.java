@@ -2,11 +2,9 @@ package de.laura.project.controller;
 
 import de.laura.project.api.model.TriviaApiData;
 import de.laura.project.api.model.TriviaApiDataAggregation;
+import de.laura.project.db.PointsMongoDB;
 import de.laura.project.db.TempTriviaQuestionDB;
-import de.laura.project.model.TriviaSelectedAnswerDTO;
-import de.laura.project.model.TriviaQuestionSet;
-import de.laura.project.model.TriviaApiParametersDTO;
-import de.laura.project.model.TriviaQuestionSetWithoutCorrectAnswer;
+import de.laura.project.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,9 +45,13 @@ class TriviaControllerTest {
     @Autowired
     private TempTriviaQuestionDB tempTriviaQuestionDB;
 
+    @Autowired
+    private PointsMongoDB pointsMongoDB;
+
     @BeforeEach
     public void setup() {
-    tempTriviaQuestionDB.clear();
+        tempTriviaQuestionDB.clear();
+        pointsMongoDB.deleteAll();
     }
 
     @Test
@@ -143,6 +145,36 @@ class TriviaControllerTest {
 
         //THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
-        assertThat(response.getBody(), is(new TriviaQuestionSetWithoutCorrectAnswer(2,"This is another awesome question", anotherAnswerForTriviaQuestionSet)));
+        assertThat(response.getBody(), is(new TriviaQuestionSetWithoutCorrectAnswer(2, "This is another awesome question", anotherAnswerForTriviaQuestionSet)));
+    }
+
+
+    @Test
+    @DisplayName("Gets total points by user")
+
+    public void getTotalPointsByUser() {
+
+        //GIVEN
+        List<TriviaPointDetails> triviaPointDetailsListNine = new ArrayList<>();
+        triviaPointDetailsListNine.add(new TriviaPointDetails("easy", 10, 20));
+        triviaPointDetailsListNine.add(new TriviaPointDetails("medium", 20, 40));
+        triviaPointDetailsListNine.add(new TriviaPointDetails("hard", 40, 40));
+        List<TriviaPointDetails> triviaPointDetailsListTen = new ArrayList<>();
+        triviaPointDetailsListTen.add(new TriviaPointDetails("hard", 10, 10));
+
+        List<TriviaPointCategory> triviaPointCategoryList = new ArrayList<>();
+        triviaPointCategoryList.add(new TriviaPointCategory(9, triviaPointDetailsListNine));
+        triviaPointCategoryList.add(new TriviaPointCategory(10, triviaPointDetailsListTen));
+
+        String user = "Laura";
+        TriviaPointSummary triviaPointSummary = new TriviaPointSummary(user, triviaPointCategoryList);
+        pointsMongoDB.save(triviaPointSummary);
+
+        //WHEN
+        ResponseEntity<Integer> response = testRestTemplate.getForEntity(getUrl() + "/totalScore/" + user, Integer.class);
+
+        //THEN
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody(), is(110));
     }
 }

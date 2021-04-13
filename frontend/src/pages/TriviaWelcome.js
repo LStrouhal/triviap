@@ -1,16 +1,22 @@
 import styled from "styled-components/macro";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { NewGameButtonStyle } from "../components/NewGameButtonStyle";
+import { getTotalPointsByUser } from "../services/apiService";
 
 export default function TriviaWelcome({ user }) {
   const history = useHistory();
+  const [totalScore, setTotalScore] = useState(0);
+
+  useEffect(() => {
+    getTotalPointsByUser(user).then(setTotalScore);
+  }, []);
 
   return (
     <Wrapper>
       <header> Welcome back,</header>
       <p> {user}! </p>
-      <div> Current score: 800 points</div>
+      <div> Current score: {totalScore} points</div>
       <buttons>
         <NewGameButtonStyle onClick={() => history.push("/questions")}>
           New Game
