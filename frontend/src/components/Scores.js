@@ -12,7 +12,6 @@ export default function Scores({ user }) {
 
   return (
     <Wrapper>
-      <h1> Score Overview </h1>
       {scoreList.map((entry) => (
         <li>
           <CategoryScoreCard
@@ -27,13 +26,6 @@ export default function Scores({ user }) {
 }
 
 const Wrapper = styled.section`
-  h1 {
-    color: var(--beigeStandard);
-    font-size: 2.5em;
-    padding-bottom: 25px;
-    margin: 0px;
-  }
-
   li {
     grid-gap: 10px;
     list-style: none;

@@ -33,7 +33,7 @@ const Wrapper = styled.section`
   height: 100vh;
   background: var(--greenStandard);
   color: var(--beigeStandard);
-  padding: 30px;
+  padding: 30px 30px 20px 30px;
   display: grid;
   grid-template-rows: 30% 20% 10% auto;
   font-family: "Playfair Display', serif";
@@ -49,7 +49,6 @@ const Wrapper = styled.section`
   p {
     font-size: 3em;
     margin: 0px;
-    text-transform: lowercase;
     padding-bottom: 10px;
     justify-self: center;
   }
