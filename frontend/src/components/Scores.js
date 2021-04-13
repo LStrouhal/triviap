@@ -8,7 +8,8 @@ export default function Scores({ user }) {
 
   useEffect(() => {
     getScoreByUser(user).then(setScoreList);
-  }, []);
+  }, [user]);
+  //
 
   return (
     <Wrapper>

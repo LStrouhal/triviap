@@ -10,7 +10,8 @@ export default function TriviaWelcome({ user }) {
 
   useEffect(() => {
     getTotalPointsByUser(user).then(setTotalScore);
-  }, []);
+  }, [user]);
+  //
 
   return (
     <Wrapper>
