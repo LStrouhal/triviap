@@ -10,4 +10,5 @@ export const NextButtonStyle = styled.button`
   align-items: flex-end;
   outline: none;
   box-shadow: none;
+  padding-bottom: 10px;
 `;
