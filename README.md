@@ -18,13 +18,16 @@ triviap
 
 Who doesn't enjoy a game of Trivia on a rainy Sunday afternoon?
 
-This app not only allows you to play your customized game, but also to save your points to allow you to compete against yourself and others.
+This app not only allows you to play your customized game, but also to save your points to allow you to compete against
+yourself and others.
 
 <p> </p>
 
 <p align=center>
-  <img alt="Login" src="screenshots/Screenshot_Login.PNG" height="200"/>
-  <img alt="Welcome" src="screenshots/Screenshot_Welcome.png" height="200"/>
-  <img alt="Game" src="screenshots/Screenshot_Game.png" height="200"/>
-  <img alt="ScoreOverview" src="screenshots/Screenshot_ScoreOverview.png" height="200"/>
+    <img alt="Login" src="screenshots/Screenshot_Login.PNG" height="200"/>
+    <img alt="Welcome" src="screenshots/Screenshot_Welcome.png" height="200"/>
+    <img alt="Selector" src="screenshots/Screenshot_Selector.png" height="200"/>
+    <img alt="Game" src="screenshots/Screenshot_Game.png" height="200"/>
+    <img alt="Results" src="screenshots/Screenshot_Congratulations.png" height="200"/>
+    <img alt="ScoreOverview" src="screenshots/Screenshot_ScoreOverview.png" height="200"/>
 </p>
