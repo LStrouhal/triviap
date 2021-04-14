@@ -25,7 +25,7 @@ export default function Questions({
 
     const loadNextQuestion = () => {
         console.log({numberOfQuestions, questionID});
-        if (numberOfQuestions == questionID) {
+        if (numberOfQuestions === Number(questionID)) {
             history.push("/results");
         } else {
             const currentQuestionID = parseInt(questionID, 10);
@@ -43,6 +43,8 @@ export default function Questions({
             }
         }, 1000);
         return () => clearTimeout(timer);
+        // disabled as dependency would lead to too frequent rendering
+        // eslint-disable-next-line
     }, [seconds]);
 
     if (!questionSet) {
