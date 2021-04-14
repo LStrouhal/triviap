@@ -1,5 +1,5 @@
 <p align=center>
-  <img alt="Logo" src="greenMan.png" height="100"/>
+  <img alt="Logo" src="screenshots/greenMan.png" height="100"/>
 </p>
 
 
@@ -23,8 +23,10 @@ This app not only allows you to play your customized game, but also to save your
 <p> </p>
 
 <p align=center>
-  <img alt="Login" src="Screenshot_Login.PNG" height="200"/>
-  <img alt="Welcome" src="Screenshot_Welcome.png" height="200"/>
-  <img alt="Game" src="Screenshot_Game.png" height="200"/>
-  <img alt="ScoreOverview" src="Screenshot_ScoreOverview.png" height="200"/>
+  <img alt="Login" src="screenshots/Screenshot_Login.PNG" height="200"/>
+  <img alt="Registration" src="screenshots/Screenshot_Registration.png" height="200"/>
+  <img alt="Welcome" src="screenshots/Screenshot_Welcome.png" height="200"/>
+  <img alt="Game" src="screenshots/Screenshot_Game.png" height="200"/>
+  <img alt="Congratulations" src="screenshots/Screenshot_Congratulations.png" height="200"/>
+  <img alt="ScoreOverview" src="screenshots/Screenshot_ScoreOverview.png" height="200"/>
 </p>
