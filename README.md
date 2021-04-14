@@ -1,5 +1,5 @@
 <p align=center>
-  <img alt="Logo" src="greenMan.png"/>
+  <img alt="Logo" src="greenMan.png" height="100"/>
 </p>
 
 
@@ -21,3 +21,9 @@ Who doesn't enjoy a game of Trivia on a rainy Sunday afternoon?
 This app not only allows you to play your customized game, but also to save your points to allow you to compete against yourself and others.
 
 
+<p align=center>
+  <img alt="Login" src="Screenshot_Login.PNG" height="200"/>
+  <img alt="Welcome" src="Screenshot_Welcome.png" height="200"/>
+  <img alt="Game" src="Screenshot_Game.png" height="200"/>
+  <img alt="ScoreOverview" src="Screenshot_ScoreOverview.png" height="200"/>
+</p>
