@@ -24,9 +24,7 @@ This app not only allows you to play your customized game, but also to save your
 
 <p align=center>
   <img alt="Login" src="screenshots/Screenshot_Login.PNG" height="200"/>
-  <img alt="Registration" src="screenshots/Screenshot_Registration.png" height="200"/>
   <img alt="Welcome" src="screenshots/Screenshot_Welcome.png" height="200"/>
   <img alt="Game" src="screenshots/Screenshot_Game.png" height="200"/>
-  <img alt="Congratulations" src="screenshots/Screenshot_Congratulations.png" height="200"/>
   <img alt="ScoreOverview" src="screenshots/Screenshot_ScoreOverview.png" height="200"/>
 </p>
