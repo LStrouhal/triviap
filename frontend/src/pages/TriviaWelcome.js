@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { NewGameButtonStyle } from "../components/NewGameButtonStyle";
+import { NewGameButtonStyle } from "../components/buttons/NewGameButtonStyle";
 import { getTotalPointsByUser } from "../services/apiService";
 
 export default function TriviaWelcome({ user }) {

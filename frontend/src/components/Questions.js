@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {useHistory, useParams} from "react-router-dom";
 import styled from "styled-components/macro";
 import Answers from "./Answers";
-import {NextButtonStyle} from "./NextButtonStyle";
+import {NextButtonStyle} from "./buttons/NextButtonStyle";
 import {BsArrowRightShort} from "react-icons/bs";
 import parse from "html-react-parser";
 

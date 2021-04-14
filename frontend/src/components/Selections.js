@@ -5,7 +5,7 @@ import { FormControl, MenuItem, Select } from "@material-ui/core";
 import { difficultyList } from "./DifficultyList";
 import { categoryList } from "./CategoryList";
 import { numberList } from "./NumberList";
-import SelectionsNextButton from "./SelectionsNextButton";
+import SelectionsNextButton from "./buttons/SelectionsNextButton";
 
 export default function Selections({
   onClickSetNumberOfQuestions,

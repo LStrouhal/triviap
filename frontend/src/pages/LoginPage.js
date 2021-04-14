@@ -3,7 +3,7 @@ import logo from "../images/whiteMan.png";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
-import { NewGameButtonStyle } from "../components/NewGameButtonStyle";
+import { NewGameButtonStyle } from "../components/buttons/NewGameButtonStyle";
 import { checkUserExists } from "../services/apiService";
 import { AiOutlineUserAdd } from "react-icons/ai";
 
