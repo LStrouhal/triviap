@@ -45,6 +45,7 @@ const Wrapper = styled.section`
     align-self: end;
     padding-bottom: 10px;
     text-align: center;
+    justify-self: center;
   }
 
   p {
