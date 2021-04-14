@@ -21,12 +21,12 @@ Who doesn't enjoy a game of Trivia on a rainy Sunday afternoon?
 This app not only allows you to play your customized game, but also to save your points to allow you to compete against
 yourself and others.
 
-## Features
+### Features
 
-Backend written in Java/Spring
-Frontend written in React
-JSON API used as a source for questions
-MongoDB used to save users, and their respective scores
+- Backend written in Java/Spring
+- Frontend written in React
+- JSON API used as a source for questions
+- MongoDB used to save users, and their respective scores
 
 
 <p align=center>
