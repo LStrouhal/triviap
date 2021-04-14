@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { checkAnswer } from "../services/apiService";
-import { AnswerButtonStyle } from "./AnswersButtonStyle";
+import { AnswerButtonStyle } from "./buttons/AnswersButtonStyle";
 import { useState } from "react";
 import parse from "html-react-parser";
 

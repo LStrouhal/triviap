@@ -1,4 +1,4 @@
-import { NewGameButtonStyle } from "../components/NewGameButtonStyle";
+import { NewGameButtonStyle } from "../components/buttons/NewGameButtonStyle";
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { useHistory } from "react-router-dom";

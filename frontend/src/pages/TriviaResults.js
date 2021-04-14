@@ -2,7 +2,7 @@ import styled from "styled-components/macro";
 import { savePoints } from "../services/apiService";
 import { useHistory } from "react-router-dom";
 import React from "react";
-import { NewGameButtonStyle } from "../components/NewGameButtonStyle";
+import { NewGameButtonStyle } from "../components/buttons/NewGameButtonStyle";
 
 export default function TriviaResults({ user, points, selectionParameters }) {
   const history = useHistory();

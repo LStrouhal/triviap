@@ -1,5 +1,5 @@
 import Selections from "../components/Selections";
-import BackButton from "../components/BackButton";
+import BackButton from "../components/buttons/BackButton";
 import styled from "styled-components/macro";
 import React from "react";
 import { useHistory } from "react-router-dom";

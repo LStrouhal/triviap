@@ -1,5 +1,5 @@
 import { BsArrowRightShort } from "react-icons/bs";
-import { callQuestionList } from "../services/apiService";
+import { callQuestionList } from "../../services/apiService";
 import { useHistory } from "react-router-dom";
 import { NextButtonStyle } from "./NextButtonStyle";
 
