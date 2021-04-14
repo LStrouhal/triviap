@@ -42,7 +42,7 @@ const Wrapper = styled.section`
   background: var(--greenStandard);
   color: var(--beigeStandard);
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 30% 30% auto;
   padding: 30px;
 
   h1 {
